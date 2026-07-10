@@ -4,6 +4,16 @@
 
 html {
   scroll-behavior: smooth;
+  --font-display: var(--font-fraunces);
+  --font-label: var(--font-grotesk);
+}
+
+/* Fraunces and Space Grotesk ship no Cyrillic glyphs, so Russian swaps
+   the display serif to Playfair Display and labels to Manrope instead
+   of silently falling back to a generic system font. */
+html[data-locale="ru"] {
+  --font-display: var(--font-playfair);
+  --font-label: var(--font-manrope);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -19,9 +19,9 @@ const config: Config = {
         ivory: "#F7F1E3",
       },
       fontFamily: {
-        display: ["var(--font-fraunces)", "serif"],
+        display: ["var(--font-display)", "serif"],
         body: ["var(--font-manrope)", "sans-serif"],
-        label: ["var(--font-grotesk)", "sans-serif"],
+        label: ["var(--font-label)", "sans-serif"],
       },
       letterSpacing: {
         wideish: "0.08em",
