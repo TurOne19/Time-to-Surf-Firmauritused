@@ -1,20 +1,62 @@
-# Time to Surf Corporate Landing
+# Time to Surf — лендинг
 
-Next.js landing page for Time to Surf beach corporate events.
+Готовый лендинг на Next.js 14 + TypeScript + Tailwind CSS. Три языка: **эстонский** (по умолчанию), **английский**, **русский** — переключатель в шапке сайта.
 
-## Run locally
+## Как запустить
 
-```bash
-pnpm install
-pnpm dev
-```
-
-Open `http://127.0.0.1:3000`.
-
-## Build
+1. Установи Node.js версии 18 или новее.
+2. В папке проекта выполни:
 
 ```bash
-pnpm build
+npm install
+npm run dev
 ```
 
-If your pnpm setup blocks optional build scripts, the project source is still valid; approve builds or run Next directly from `node_modules/.bin/next`.
+3. Открой http://localhost:3000
+
+## Как собрать для продакшена
+
+```bash
+npm run build
+npm run start
+```
+
+Готовый сайт можно задеплоить на Vercel, Netlify или любой хостинг с поддержкой Node.js (просто загрузи всю папку и подключи к своему аккаунту на выбранной платформе).
+
+## Как добавить свои фото и видео
+
+Сейчас в галерее 63 места под фото и 4 места под видео — они уже показывают красивые песочные плейсхолдеры с номером, пока настоящих файлов нет.
+
+Чтобы заменить плейсхолдеры на настоящие фото/видео — просто положи файлы в папку `public/gallery` с такими именами:
+
+- Фото: `photo-01.jpg`, `photo-02.jpg`, … `photo-63.jpg`
+- Видео: `video-01.mp4`, `video-02.mp4`, `video-03.mp4`, `video-04.mp4`
+- Превью (постер) для видео: `video-01-poster.jpg` и т.д.
+
+Как только файл появится в папке с правильным именем — плейсхолдер автоматически заменится на настоящее фото/видео, ничего в коде менять не нужно.
+
+## Как поменять фото на Hero (первый экран)
+
+Замени файл `public/hero.jpg` на своё фото с таким же именем.
+
+## Где менять тексты
+
+Все тексты на всех трёх языках лежат в одном файле: `lib/content.ts`. Каждый язык — отдельный блок (`et`, `en`, `ru`) с одинаковой структурой, так что переводы легко редактировать или уточнять.
+
+## Где менять телефон / цену
+
+Телефон и цена используются в нескольких местах:
+- `lib/content.ts` — тексты с номером телефона (finalCta.phone) для каждого языка
+- `components/Hero.tsx`, `components/FinalCta.tsx`, `components/Footer.tsx` — ссылки `tel:+37255512872`
+- `components/Pricing.tsx` — цена `€350` указана напрямую
+
+## Структура проекта
+
+```
+app/            — страницы, layout, глобальные стили
+components/     — все секции сайта (Hero, Gallery, Pricing и т.д.)
+lib/            — тексты (content.ts), языковой контекст, генератор галереи
+public/         — фото, видео, hero.jpg
+```
+
+Удачи с корпоративами! 🌊
