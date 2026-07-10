@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: #EFE3CB;
+  color: #0C2630;
+}
+
+::selection {
+  background-color: #D9A94E;
+  color: #0C2630;
+}
+
+:focus-visible {
+  outline: 2px solid #D9A94E;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* thin custom scrollbar for horizontal rails */
+.rail::-webkit-scrollbar {
+  height: 6px;
+}
+.rail::-webkit-scrollbar-thumb {
+  background: rgba(217, 169, 78, 0.5);
+  border-radius: 999px;
+}
+.rail::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+.bulb-glow {
+  animation: glow 3.2s ease-in-out infinite;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
