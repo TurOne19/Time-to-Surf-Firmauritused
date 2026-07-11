@@ -103,6 +103,9 @@ export interface Dictionary {
   reviews: {
     eyebrow: string;
     title: string;
+    companies: string[];
+    eventSizes: string[];
+    caseLabel: string;
     badge: string;
     leaveReview: string;
     prev: string;
@@ -327,6 +330,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
     reviews: {
       eyebrow: "TAGASISIDE",
       title: "Mida kliendid ütlevad",
+      companies: ["Tehnoloogiaettevõte", "Ehitusettevõte", "Turundusagentuur", "Väikeettevõte", "IT-ettevõte", "Logistikaettevõte"],
+      eventSizes: ["42 osalejat", "28 osalejat", "36 osalejat", "25 osalejat", "31 osalejat", "54 osalejat"],
+      caseLabel: "Ettevõtete üritused",
       badge: "Kinnitatud klient",
       leaveReview: "Jäta arvustus",
       prev: "Eelmised",
@@ -593,6 +599,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
     reviews: {
       eyebrow: "FEEDBACK",
       title: "What clients are saying",
+      companies: ["Technology company", "Construction company", "Marketing agency", "Small business", "IT company", "Logistics company"],
+      eventSizes: ["42 guests", "28 guests", "36 guests", "25 guests", "31 guests", "54 guests"],
+      caseLabel: "Corporate events",
       badge: "Verified client",
       leaveReview: "Leave a review",
       prev: "Previous",
@@ -859,6 +868,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
     reviews: {
       eyebrow: "ОТЗЫВЫ",
       title: "Что говорят клиенты",
+      companies: ["Технологическая компания", "Строительная компания", "Маркетинговое агентство", "Малый бизнес", "IT-компания", "Логистическая компания"],
+      eventSizes: ["42 участника", "28 участников", "36 участников", "25 участников", "31 участник", "54 участника"],
+      caseLabel: "Корпоративные мероприятия",
       badge: "Проверенный клиент",
       leaveReview: "Оставить отзыв",
       prev: "Назад",

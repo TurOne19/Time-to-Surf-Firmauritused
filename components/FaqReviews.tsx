@@ -4,7 +4,6 @@ import { useMemo, useState } from "react";
 import { useLanguage } from "@/lib/language-context";
 import Reveal from "./Reveal";
 import ReviewModal from "./ReviewModal";
-import { Crab } from "./Critters";
 
 const PAGE_SIZE = 3;
 
@@ -14,18 +13,19 @@ function localeTag(locale: string) {
   return "et-EE";
 }
 
-function Stars({ rating }: { rating: number }) {
+function Stars({ rating, light = false }: { rating: number; light?: boolean }) {
   return (
-    <div className="flex gap-0.5" aria-label={`${rating}/5`}>
-      {[1, 2, 3, 4, 5].map((n) => (
+    <div className="flex gap-1" aria-label={`${rating}/5`}>
+      {[1, 2, 3, 4, 5].map((number) => (
         <svg
-          key={n}
-          width="14"
-          height="14"
+          key={number}
+          width="15"
+          height="15"
           viewBox="0 0 24 24"
-          fill={n <= rating ? "#D9A94E" : "none"}
-          stroke="#D9A94E"
+          fill={number <= rating ? "#D9A94E" : "none"}
+          stroke={number <= rating ? "#D9A94E" : light ? "rgba(247,241,227,.3)" : "rgba(12,38,48,.25)"}
           strokeWidth="1.4"
+          aria-hidden="true"
         >
           <path d="M12 3.5L14.7 9.3L21 10.1L16.5 14.4L17.6 20.6L12 17.6L6.4 20.6L7.5 14.4L3 10.1L9.3 9.3Z" strokeLinejoin="round" />
         </svg>
@@ -41,10 +41,10 @@ export default function FaqReviews() {
   const [modalOpen, setModalOpen] = useState(false);
 
   const pageCount = Math.ceil(t.reviews.items.length / PAGE_SIZE);
-  const visibleReviews = useMemo(
-    () => t.reviews.items.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE),
-    [t.reviews.items, page]
-  );
+  const pageStart = page * PAGE_SIZE;
+  const visibleReviews = t.reviews.items.slice(pageStart, pageStart + PAGE_SIZE);
+  const featured = visibleReviews[0];
+  const secondary = visibleReviews.slice(1);
 
   const dateFmt = useMemo(
     () => new Intl.DateTimeFormat(localeTag(locale), { month: "long", year: "numeric" }),
@@ -52,35 +52,46 @@ export default function FaqReviews() {
   );
 
   return (
-    <section id="faq" className="bg-sand relative overflow-hidden">
-      <Crab className="hidden lg:block absolute top-16 right-10 w-14 h-11 text-ink/10" />
-      <div className="max-w-7xl mx-auto px-5 md:px-8 py-24 md:py-32">
-        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20">
-          {/* FAQ column */}
-          <Reveal>
-            <p className="font-label text-ink/60 text-xs tracking-widest2 uppercase mb-4">
+    <>
+      <section id="faq" className="relative overflow-hidden bg-sand pb-28 pt-28 sm:pt-36 md:pb-40 lg:pt-44">
+        <div className="mx-auto grid max-w-[90rem] gap-14 px-5 sm:px-8 lg:grid-cols-12 lg:gap-20 lg:px-12">
+          <Reveal className="lg:col-span-5">
+            <p className="mb-6 flex items-center gap-3 font-label text-[11px] font-semibold uppercase tracking-[0.22em] text-ink/50">
+              <span className="h-px w-10 bg-gold" aria-hidden="true" />
               {t.faq.eyebrow}
             </p>
-            <h2 className="font-display text-3xl md:text-4xl text-ink leading-[1.12] text-balance mb-8">
+            <h2 className="max-w-lg text-balance font-display text-4xl font-medium leading-[1.02] tracking-[-0.025em] text-ink sm:text-5xl md:text-6xl">
               {t.faq.title}
             </h2>
+            <div className="mt-10 hidden items-center gap-4 text-ink/30 lg:flex" aria-hidden="true">
+              <span className="h-px w-20 bg-ink/20" />
+              <span className="font-display text-2xl italic">FAQ</span>
+            </div>
+          </Reveal>
 
-            <div className="flex flex-col border-t border-ink/15">
-              {t.faq.items.map((item, i) => {
-                const open = openFaq === i;
+          <Reveal className="lg:col-span-7" delay={100}>
+            <div className="border-t border-ink/15">
+              {t.faq.items.map((item, index) => {
+                const open = openFaq === index;
                 return (
-                  <div key={i} className="border-b border-ink/15">
+                  <div key={item.q} className="border-b border-ink/15">
                     <button
-                      onClick={() => setOpenFaq(open ? null : i)}
-                      className="w-full flex items-center justify-between gap-4 py-5 text-left"
+                      type="button"
+                      onClick={() => setOpenFaq(open ? null : index)}
+                      className="flex w-full items-center justify-between gap-6 py-7 text-left md:py-8"
                       aria-expanded={open}
                     >
-                      <span className="font-display text-base md:text-lg text-ink pr-4">
-                        {item.q}
+                      <span className="flex items-baseline gap-4">
+                        <span className="font-label text-[9px] tracking-[0.16em] text-gold-2">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <span className="font-display text-lg leading-snug text-ink md:text-xl">
+                          {item.q}
+                        </span>
                       </span>
                       <span
-                        className={`shrink-0 text-gold-2 text-xl transition-transform duration-300 ${
-                          open ? "rotate-45" : ""
+                        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-ink/20 text-xl text-ink transition-all duration-300 ${
+                          open ? "rotate-45 border-gold bg-gold text-ink" : ""
                         }`}
                         aria-hidden="true"
                       >
@@ -89,11 +100,11 @@ export default function FaqReviews() {
                     </button>
                     <div
                       className={`grid transition-all duration-300 ease-out ${
-                        open ? "grid-rows-[1fr] opacity-100 pb-5" : "grid-rows-[0fr] opacity-0"
+                        open ? "grid-rows-[1fr] pb-8 opacity-100" : "grid-rows-[0fr] opacity-0"
                       }`}
                     >
                       <div className="overflow-hidden">
-                        <p className="font-body text-ink/70 text-sm md:text-base leading-relaxed pr-6">
+                        <p className="max-w-2xl pl-9 pr-12 font-body text-sm leading-[1.8] text-ink/70 md:pl-10 md:text-base">
                           {item.a}
                         </p>
                       </div>
@@ -103,84 +114,133 @@ export default function FaqReviews() {
               })}
             </div>
           </Reveal>
+        </div>
 
-          {/* Reviews column */}
-          <Reveal delay={120}>
-            <div className="flex items-start justify-between gap-4 mb-4">
-              <div>
-                <p className="font-label text-ink/60 text-xs tracking-widest2 uppercase mb-4">
-                  {t.reviews.eyebrow}
-                </p>
-                <h2 className="font-display text-3xl md:text-4xl text-ink leading-[1.12] text-balance">
-                  {t.reviews.title}
-                </h2>
-              </div>
+        <svg
+          className="absolute -bottom-px left-0 h-16 w-full text-ink md:h-24"
+          viewBox="0 0 1440 96"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path d="M0 62C226 19 403 89 625 55C858 19 1050 83 1440 25V96H0Z" fill="currentColor" />
+        </svg>
+      </section>
 
-              {pageCount > 1 && (
-                <div className="hidden sm:flex flex-col gap-1.5 shrink-0 pt-2">
-                  <button
-                    onClick={() => setPage((p) => (p - 1 + pageCount) % pageCount)}
-                    aria-label={t.reviews.prev}
-                    className="w-9 h-9 border border-ink/25 flex items-center justify-center hover:border-gold-2 hover:text-gold-2 transition-colors"
-                  >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                      <path d="M5 15L12 8L19 15" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </button>
-                  <button
-                    onClick={() => setPage((p) => (p + 1) % pageCount)}
-                    aria-label={t.reviews.next}
-                    className="w-9 h-9 border border-ink/25 flex items-center justify-center hover:border-gold-2 hover:text-gold-2 transition-colors"
-                  >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                      <path d="M5 9L12 16L19 9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </button>
-                </div>
-              )}
+      <section className="relative overflow-hidden bg-ink py-28 sm:py-36 lg:py-40">
+        <div className="pointer-events-none absolute -right-24 top-20 font-display text-[22rem] leading-none text-ivory/[0.025]" aria-hidden="true">
+          “
+        </div>
+
+        <div className="relative mx-auto max-w-[90rem] px-5 sm:px-8 lg:px-12">
+          <Reveal className="mb-12 flex flex-col gap-8 border-b border-ivory/15 pb-10 md:flex-row md:items-end md:justify-between lg:mb-16">
+            <div>
+              <p className="mb-5 flex items-center gap-3 font-label text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">
+                <span className="h-px w-10 bg-gold" aria-hidden="true" />
+                {t.reviews.eyebrow}
+              </p>
+              <h2 className="font-display text-4xl font-medium leading-none tracking-[-0.025em] text-ivory sm:text-5xl md:text-6xl">
+                {t.reviews.title}
+              </h2>
             </div>
 
-            <div className="flex flex-col gap-3.5 min-h-[300px]">
-              {visibleReviews.map((r, i) => (
-                <div key={`${page}-${i}`} className="bg-ivory/70 border border-ink/10 p-6">
-                  <div className="flex items-start justify-between gap-4 mb-3">
-                    <div>
-                      <p className="font-display text-base text-ink">{r.name}</p>
-                      <p className="font-body text-xs text-ink/50">{r.role}</p>
-                    </div>
-                    <Stars rating={r.rating} />
-                  </div>
-                  <p className="font-body text-sm text-ink/75 leading-relaxed mb-3">{r.text}</p>
-                  <div className="flex items-center gap-2 font-label text-[10px] tracking-wideish uppercase text-ink/40">
-                    <span className="text-foam">✓</span>
-                    {t.reviews.badge}
-                    <span className="text-ink/25">·</span>
-                    {dateFmt.format(new Date(r.date))}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex items-center justify-between mt-6">
-              {pageCount > 1 ? (
-                <p className="font-label text-[11px] tracking-wideish uppercase text-ink/40">
-                  {t.reviews.pageOf} {page + 1}/{pageCount}
-                </p>
-              ) : (
-                <span />
-              )}
+            <div className="flex items-center gap-3">
               <button
+                type="button"
                 onClick={() => setModalOpen(true)}
-                className="font-label text-xs tracking-wideish uppercase border border-ink/30 text-ink px-5 py-2.5 hover:border-gold hover:text-gold-2 transition-colors"
+                className="mr-2 border-b border-ivory/30 pb-1 font-label text-[10px] uppercase tracking-[0.16em] text-ivory/70 transition-colors hover:border-gold hover:text-gold"
               >
                 {t.reviews.leaveReview}
               </button>
+              {pageCount > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => setPage((value) => (value - 1 + pageCount) % pageCount)}
+                    aria-label={t.reviews.prev}
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-ivory/25 text-ivory transition-colors hover:border-gold hover:bg-gold hover:text-ink"
+                  >
+                    ←
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPage((value) => (value + 1) % pageCount)}
+                    aria-label={t.reviews.next}
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-ivory/25 text-ivory transition-colors hover:border-gold hover:bg-gold hover:text-ink"
+                  >
+                    →
+                  </button>
+                </>
+              )}
             </div>
           </Reveal>
+
+          {featured && (
+            <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
+              <Reveal className="lg:col-span-7">
+                <article className="relative flex min-h-[470px] flex-col justify-between border-l border-gold/60 pl-6 sm:pl-10 lg:min-h-[540px] lg:pl-14">
+                  <div>
+                    <div className="mb-8 flex items-center justify-between gap-5">
+                      <Stars rating={featured.rating} light />
+                      <span className="font-label text-[9px] uppercase tracking-[0.18em] text-ivory/30">
+                        0{pageStart + 1} / 0{t.reviews.items.length}
+                      </span>
+                    </div>
+                    <blockquote className="max-w-4xl text-balance font-display text-3xl leading-[1.2] tracking-[-0.02em] text-ivory sm:text-4xl md:text-5xl">
+                      “{featured.text}”
+                    </blockquote>
+                  </div>
+
+                  <footer className="mt-12 grid gap-6 border-t border-ivory/15 pt-7 sm:grid-cols-2">
+                    <div>
+                      <p className="font-display text-xl text-ivory">{featured.name}</p>
+                      <p className="mt-1 font-body text-xs text-ivory/50">{featured.role}</p>
+                    </div>
+                    <div className="sm:text-right">
+                      <p className="font-label text-[10px] font-semibold uppercase tracking-[0.16em] text-gold">
+                        {t.reviews.companies[pageStart]}
+                      </p>
+                      <p className="mt-2 font-body text-sm text-ivory/60">
+                        {t.reviews.eventSizes[pageStart]} · {dateFmt.format(new Date(featured.date))}
+                      </p>
+                    </div>
+                  </footer>
+                </article>
+              </Reveal>
+
+              <Reveal className="lg:col-span-5" delay={120}>
+                <div className="border-t border-ivory/15">
+                  {secondary.map((review, index) => {
+                    const absoluteIndex = pageStart + index + 1;
+                    return (
+                      <article key={review.date} className="border-b border-ivory/15 py-8 first:pt-7 lg:py-10">
+                        <div className="mb-5 flex items-center justify-between gap-4">
+                          <p className="font-label text-[9px] font-semibold uppercase tracking-[0.16em] text-gold">
+                            {t.reviews.companies[absoluteIndex]}
+                          </p>
+                          <Stars rating={review.rating} light />
+                        </div>
+                        <blockquote className="font-display text-xl leading-relaxed text-ivory/80 md:text-2xl">
+                          “{review.text}”
+                        </blockquote>
+                        <footer className="mt-6 flex flex-wrap items-center justify-between gap-3 font-body text-xs text-ivory/40">
+                          <span>{review.name} · {review.role}</span>
+                          <span>{t.reviews.eventSizes[absoluteIndex]}</span>
+                        </footer>
+                      </article>
+                    );
+                  })}
+                </div>
+
+                <p className="mt-6 font-label text-[9px] uppercase tracking-[0.18em] text-ivory/30">
+                  {t.reviews.caseLabel} · {t.reviews.pageOf} {page + 1}/{pageCount}
+                </p>
+              </Reveal>
+            </div>
+          )}
         </div>
-      </div>
+      </section>
 
       {modalOpen && <ReviewModal onClose={() => setModalOpen(false)} />}
-    </section>
+    </>
   );
 }
