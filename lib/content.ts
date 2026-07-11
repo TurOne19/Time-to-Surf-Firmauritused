@@ -91,7 +91,14 @@ export interface Dictionary {
     cta: string;
     durationNote: string;
   };
-  trust: { eyebrow: string; title: string; items: FeatureItem[] };
+  trust: {
+    eyebrow: string;
+    title: string;
+    stepsLabel: string;
+    proofLabel: string;
+    photoAlt: string;
+    items: FeatureItem[];
+  };
   faq: { eyebrow: string; title: string; items: FaqItem[] };
   reviews: {
     eyebrow: string;
@@ -265,22 +272,25 @@ export const dictionaries: Record<Locale, Dictionary> = {
     trust: {
       eyebrow: "USALDUS",
       title: "Miks meid usaldada?",
+      stepsLabel: "Usaldus ei sünni lubadustest, vaid läbimõeldud protsessist.",
+      proofLabel: "aastat rannapäevade korraldamise kogemust",
+      photoAlt: "Time to Surf meeskond valmistab gruppi ette SUP-sõiduks",
       items: [
         {
-          title: "10+ aastat kogemust",
-          desc: "Oleme korraldanud rannaüritusi alates 2013. aastast. Teame, kuidas tiimi inspireerida ja pakkuda unustamatuid elamusi.",
+          title: "Alustame lühikesest briifist",
+          desc: "Täpsustame grupi suuruse, eesmärgi, kogemuse ja ootused. Nii ei satu programmi tegevusi lihtsalt täiteks.",
         },
         {
-          title: "Professionaalne meeskond",
-          desc: "Sertifitseeritud instruktorid, saatejuhid ja tiimitöö-koolitajad — kogemus, karisma ja tähelepanu detailidele igas liigutuses.",
+          title: "Paneme paika plaani A ja B",
+          desc: "Koostame ajakava, valime tegevused ja kontrollime ilma. Vajadusel on alternatiivne stsenaarium valmis juba enne teie saabumist.",
         },
         {
-          title: "Valmis stsenaariumid + paindlikkus",
-          desc: "Kasutame läbiproovitud formaate, kuid oskame kõike kohandada vastavalt teie soovidele.",
+          title: "Meeskond juhib päeva kohapeal",
+          desc: "Instruktorid ja läbiviijad hoiavad tempot, kaasavad osalejaid ning kohandavad programmi grupi tegeliku energiaga.",
         },
         {
-          title: "Ohutus ennekõike",
-          desc: "Ainult kontrollitud varustus, ala nähtavus, kogenud saatjad ning ohutusstandardite täielik järgimine.",
+          title: "Kontrollime enne iga starti",
+          desc: "Varustus, päästevestid, ala ja juhised vaadatakse läbi enne vette või tegevusse minekut — mitte pärast probleemi tekkimist.",
         },
       ],
     },
@@ -528,22 +538,25 @@ export const dictionaries: Record<Locale, Dictionary> = {
     trust: {
       eyebrow: "TRUST",
       title: "Why you can trust us",
+      stepsLabel: "Trust is not built with promises. It is built through a considered process.",
+      proofLabel: "years of experience creating days by the sea",
+      photoAlt: "The Time to Surf team preparing a group for SUP",
       items: [
         {
-          title: "10+ years of experience",
-          desc: "We've been running beach events since 2013. We know how to inspire a team and deliver an experience nobody forgets.",
+          title: "We begin with a short briefing",
+          desc: "We clarify group size, objectives, experience and expectations, so nothing enters the program merely as filler.",
         },
         {
-          title: "A professional team",
-          desc: "Certified instructors, hosts and team-building facilitators — experience, charisma and attention to detail in every move.",
+          title: "We prepare plan A and plan B",
+          desc: "We build the schedule, select activities and monitor the weather. An alternative scenario is ready before you arrive.",
         },
         {
-          title: "Proven formats + flexibility",
-          desc: "We work from polished, tested formats, but we know how to adapt everything to what you want.",
+          title: "Our team runs the day on site",
+          desc: "Instructors and facilitators manage the pace, involve participants and adapt the program to the group's real energy.",
         },
         {
-          title: "Safety first",
-          desc: "Only checked equipment, clear sightlines across the site, experienced staff, and full compliance with safety standards.",
+          title: "We check before every start",
+          desc: "Equipment, life jackets, the site and instructions are reviewed before anyone enters the water or begins an activity.",
         },
       ],
     },
@@ -791,22 +804,25 @@ export const dictionaries: Record<Locale, Dictionary> = {
     trust: {
       eyebrow: "ДОВЕРИЕ",
       title: "Почему можно нам доверять?",
+      stepsLabel: "Доверие создают не красивые обещания, а продуманный процесс.",
+      proofLabel: "лет опыта в организации корпоративных дней у моря",
+      photoAlt: "Команда Time to Surf готовит группу к выходу на SUP",
       items: [
         {
-          title: "10+ лет опыта",
-          desc: "Мы проводим пляжные мероприятия с 2013 года. Знаем, как вдохновить команду и подарить незабываемые впечатления.",
+          title: "Начинаем с короткого брифа",
+          desc: "Уточняем размер группы, цель, опыт и ожидания. Так в программе не появляется ничего просто для заполнения времени.",
         },
         {
-          title: "Профессиональная команда",
-          desc: "Сертифицированные инструкторы, ведущие и тимбилдеры — опыт, харизма и внимание к деталям в каждом движении.",
+          title: "Готовим план А и план Б",
+          desc: "Собираем тайминг, подбираем активности и следим за погодой. Запасной сценарий готов ещё до вашего приезда.",
         },
         {
-          title: "Готовые сценарии + гибкость",
-          desc: "Работаем по отточенным форматам, но умеем адаптировать всё под ваши желания.",
+          title: "На площадке ведём весь день",
+          desc: "Инструкторы и ведущие держат темп, вовлекают участников и подстраивают программу под реальную энергию группы.",
         },
         {
-          title: "Безопасность прежде всего",
-          desc: "Только проверенное оборудование, видимость зоны, опытные сопровождающие и полное соблюдение стандартов безопасности.",
+          title: "Проверяем перед каждым стартом",
+          desc: "Экипировку, спасательные жилеты, площадку и инструкции проверяем до выхода на воду или начала активности.",
         },
       ],
     },
