@@ -379,9 +379,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
       items: [],
     },
     finalCta: {
-      title: "Kas teil on omad ideed, kuidas üritust läbi viia?",
-      subtitle: "Võtke julgelt ühendust — leiame koos teie jaoks ideaalse lahenduse!",
-      telegramCta: "Kirjuta Telegramis",
+      title: "Teie meeskond. Teie päev. Teie programm.",
+      subtitle: "Personaalne programm mere ääres",
+      telegramCta: "Arutame teie päeva Telegramis",
       callLabel: "või helista",
     },
     location: {
@@ -617,9 +617,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
       items: [],
     },
     finalCta: {
-      title: "Have your own idea for the event?",
-      subtitle: "Reach out — together we'll find the perfect solution for you!",
-      telegramCta: "Message us on Telegram",
+      title: "Your team. Your day. Your program.",
+      subtitle: "A tailored program by the sea",
+      telegramCta: "Plan your day in Telegram",
       callLabel: "or call",
     },
     location: {
@@ -855,9 +855,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
       items: [],
     },
     finalCta: {
-      title: "Есть свои идеи, как провести мероприятие?",
-      subtitle: "Смело связывайтесь — вместе найдём идеальное решение для вас!",
-      telegramCta: "Написать в Telegram",
+      title: "Ваша команда. Ваш день. Ваша программа.",
+      subtitle: "Индивидуальная программа у моря",
+      telegramCta: "Обсудить ваш день в Telegram",
       callLabel: "или позвоните",
     },
     location: {
