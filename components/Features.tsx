@@ -1,45 +1,107 @@
 "use client";
 
 import { useLanguage } from "@/lib/language-context";
+import Reveal from "./Reveal";
 
 export default function Features() {
   const { t } = useLanguage();
 
   return (
-    <section id="program" className="bg-ink relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-5 md:px-8 py-24 md:py-32">
-        <div className="max-w-2xl mb-16 md:mb-20">
-          <p className="font-label text-gold text-xs tracking-widest2 uppercase mb-4">
-            {t.features.eyebrow}
-          </p>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-ivory leading-[1.12] text-balance mb-5">
-            {t.features.title}
-          </h2>
-          <p className="font-body text-ivory/65 text-base md:text-lg leading-relaxed">
-            {t.features.subtitle}
-          </p>
-        </div>
+    <section id="program" className="relative overflow-hidden bg-ink">
+      <svg
+        className="pointer-events-none absolute -right-40 top-20 h-[520px] w-[900px] text-ivory/[0.035]"
+        viewBox="0 0 900 520"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path d="M8 331C171 153 294 459 462 278S742 135 892 244" stroke="currentColor" />
+        <path d="M3 372C171 194 298 500 469 319S747 176 899 285" stroke="currentColor" />
+      </svg>
 
-        <ol className="relative">
-          <div className="absolute left-[27px] md:left-[35px] top-3 bottom-3 w-px bg-gradient-to-b from-gold/60 via-gold/20 to-transparent" />
-          {t.features.items.map((item, i) => (
-            <li key={i} className="relative flex gap-6 md:gap-10 pb-14 md:pb-16 last:pb-0">
-              <div className="relative shrink-0 w-14 md:w-[70px] flex items-start justify-center pt-1">
-                <span className="relative z-10 w-14 h-14 md:w-[70px] md:h-[70px] rounded-full border border-gold/40 bg-ink flex items-center justify-center font-display text-gold text-lg md:text-xl">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </div>
-              <div className="pt-2 md:pt-4">
-                <h3 className="font-display text-xl md:text-2xl text-ivory mb-2.5">
-                  {item.title}
-                </h3>
-                <p className="font-body text-ivory/65 text-sm md:text-base leading-relaxed max-w-2xl">
-                  {item.desc}
+      <div className="relative mx-auto max-w-[90rem] px-5 py-28 sm:px-8 md:py-36 lg:px-12 lg:py-44">
+        <Reveal className="grid gap-10 border-b border-ivory/15 pb-14 md:grid-cols-12 md:items-end md:pb-20">
+          <div className="md:col-span-7">
+            <p className="mb-6 flex items-center gap-3 font-label text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">
+              <span className="h-px w-10 bg-gold" aria-hidden="true" />
+              {t.features.eyebrow}
+            </p>
+            <h2 className="max-w-3xl text-balance font-display text-4xl font-medium leading-[1.02] tracking-[-0.025em] text-ivory sm:text-5xl md:text-6xl lg:text-[4.75rem]">
+              {t.features.title}
+            </h2>
+          </div>
+
+          <div className="md:col-span-5 md:pb-1">
+            <p className="max-w-lg font-body text-base leading-relaxed text-ivory/70 md:text-lg">
+              {t.features.subtitle}
+            </p>
+            <div className="mt-6 flex max-w-lg gap-4 border-l border-gold/60 pl-5">
+              <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-gold shadow-[0_0_0_5px_rgba(217,169,78,0.1)]" aria-hidden="true" />
+              <div>
+                <p className="font-label text-[10px] font-semibold uppercase tracking-[0.18em] text-gold">
+                  {t.features.adaptabilityTitle}
+                </p>
+                <p className="mt-1.5 font-body text-sm leading-relaxed text-ivory/60">
+                  {t.features.adaptabilityText}
                 </p>
               </div>
-            </li>
-          ))}
+            </div>
+          </div>
+        </Reveal>
+
+        <ol className="relative mt-16 md:mt-24 lg:mt-28">
+          <div className="absolute bottom-0 left-[18px] top-0 w-px bg-gradient-to-b from-gold/70 via-gold/30 to-gold/5 lg:left-1/2" aria-hidden="true" />
+
+          {t.features.items.map((item, index) => {
+            const isRight = index % 2 === 1;
+
+            return (
+              <li key={item.title} className="relative pb-16 last:pb-0 md:pb-20 lg:pb-24">
+                <Reveal
+                  delay={Math.min(index * 70, 280)}
+                  className={`relative grid lg:grid-cols-2 ${isRight ? "lg:text-left" : "lg:text-right"}`}
+                >
+                <span
+                  className="absolute left-[13px] top-3 z-10 h-[11px] w-[11px] rounded-full border border-gold bg-ink shadow-[0_0_0_7px_rgba(217,169,78,0.08)] lg:left-1/2 lg:-translate-x-1/2"
+                  aria-hidden="true"
+                />
+
+                <div
+                  className={`relative ml-12 max-w-xl border-t border-ivory/15 pt-6 lg:ml-0 ${
+                    isRight ? "lg:col-start-2 lg:ml-14" : "lg:mr-14 lg:justify-self-end"
+                  }`}
+                >
+                  <div className={`mb-5 flex items-end gap-4 ${isRight ? "" : "lg:justify-end"}`}>
+                    <span className="font-display text-6xl font-medium leading-none tracking-[-0.06em] text-gold md:text-7xl">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="mb-1.5 font-label text-[10px] font-semibold uppercase tracking-[0.2em] text-ivory/40">
+                      {t.features.stages[index]}
+                    </span>
+                  </div>
+
+                  <h3 className="text-balance font-display text-2xl leading-tight text-ivory md:text-3xl">
+                    {item.title}
+                  </h3>
+                  <p className={`mt-4 font-body text-sm leading-relaxed text-ivory/60 md:text-base ${isRight ? "" : "lg:ml-auto"}`}>
+                    {item.desc}
+                  </p>
+
+                  <span
+                    className={`mt-7 block h-px w-12 bg-gold/50 ${isRight ? "" : "lg:ml-auto"}`}
+                    aria-hidden="true"
+                  />
+                </div>
+                </Reveal>
+              </li>
+            );
+          })}
         </ol>
+
+        <div className="mt-20 flex items-center justify-between border-t border-ivory/10 pt-7 font-label text-[9px] uppercase tracking-[0.2em] text-ivory/30 md:mt-28">
+          <span>{t.features.timelineStart}</span>
+          <span className="mx-5 h-px flex-1 bg-gradient-to-r from-gold/40 to-transparent" aria-hidden="true" />
+          <span>{t.features.timelineEnd}</span>
+        </div>
       </div>
     </section>
   );

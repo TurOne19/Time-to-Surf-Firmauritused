@@ -52,6 +52,11 @@ export interface Dictionary {
     eyebrow: string;
     title: string;
     subtitle: string;
+    adaptabilityTitle: string;
+    adaptabilityText: string;
+    stages: string[];
+    timelineStart: string;
+    timelineEnd: string;
     items: FeatureItem[];
   };
   gallery: {
@@ -171,6 +176,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
       title: "Mis teid ees ootab",
       subtitle:
         "Keskmine kestus 3–4 tundi. Programmi saab alati täiendada ja kohandada vastavalt soovile.",
+      adaptabilityTitle: "Alati paindlik",
+      adaptabilityText: "Valime tegevused vastavalt ilmale, grupi tempole ja teie meeskonna iseloomule.",
+      stages: ["Algus", "Hoog", "Meri", "Looming", "Päikeseloojang", "Finaal"],
+      timelineStart: "Kohtume rannas",
+      timelineEnd: "Lahkute ühise looga",
       items: [
         {
           title: "Rannatiimitöö vau-efektiga",
@@ -414,6 +424,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
       title: "What's waiting for you",
       subtitle:
         "Average duration 3–4 hours. The program can always be extended and tailored to your wishes.",
+      adaptabilityTitle: "Always flexible",
+      adaptabilityText: "We select activities around the weather, the group's pace and your team's personality.",
+      stages: ["Arrival", "Momentum", "The sea", "Create", "Sunset", "Finale"],
+      timelineStart: "Meet at the beach",
+      timelineEnd: "Leave with a shared story",
       items: [
         {
           title: "Beach team-building with a wow-effect",
@@ -657,6 +672,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
       title: "Что вас ждёт",
       subtitle:
         "Средняя длительность 3–4 часа. Программу всегда можно дополнить и подстроить под ваш запрос.",
+      adaptabilityTitle: "Всегда гибко",
+      adaptabilityText: "Подбираем активности под погоду, темп группы и характер именно вашей команды.",
+      stages: ["Старт", "Драйв", "Море", "Творчество", "Закат", "Финал"],
+      timelineStart: "Встречаемся на пляже",
+      timelineEnd: "Уезжаете с общей историей",
       items: [
         {
           title: "Пляжный тимбилдинг с вау-эффектом",
