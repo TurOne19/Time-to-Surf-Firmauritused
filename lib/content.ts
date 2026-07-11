@@ -35,6 +35,8 @@ export interface Dictionary {
     ctaPrimary: string;
     ctaSecondary: string;
     phoneLabel: string;
+    detailsLabel: string;
+    details: string[];
   };
   intro: { eyebrow: string; title: string; paragraphs: string[] };
   suitedFor: { title: string; items: string[] };
@@ -128,6 +130,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
       ctaPrimary: "Broneeri kuupäev",
       ctaSecondary: "Vaata programmi",
       phoneLabel: "Kiire vastus",
+      detailsLabel: "Ürituse põhiinfo",
+      details: ["Stroomi rand, Tallinn", "3–4 tundi", "Personaalne programm"],
     },
     intro: {
       eyebrow: "TIME TO SURF",
@@ -361,6 +365,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
       ctaPrimary: "Book your date",
       ctaSecondary: "See the program",
       phoneLabel: "Fast reply",
+      detailsLabel: "Event essentials",
+      details: ["Stroomi Beach, Tallinn", "3–4 hours", "Tailored program"],
     },
     intro: {
       eyebrow: "TIME TO SURF",
@@ -594,6 +600,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
       ctaPrimary: "Забронировать дату",
       ctaSecondary: "Смотреть программу",
       phoneLabel: "Быстрый ответ",
+      detailsLabel: "Главная информация",
+      details: ["Пляж Штромка, Таллинн", "3–4 часа", "Персональная программа"],
     },
     intro: {
       eyebrow: "TIME TO SURF",
