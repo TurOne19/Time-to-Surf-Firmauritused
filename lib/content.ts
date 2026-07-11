@@ -13,6 +13,19 @@ export interface FeatureItem {
   desc: string;
 }
 
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
+export interface ReviewItem {
+  name: string;
+  role: string;
+  rating: number;
+  text: string;
+  date: string;
+}
+
 export interface Dictionary {
   nav: { links: string[]; cta: string };
   hero: {
@@ -52,14 +65,59 @@ export interface Dictionary {
     durationNote: string;
   };
   trust: { eyebrow: string; title: string; items: FeatureItem[] };
-  finalCta: { title: string; subtitle: string; cta: string; phone: string };
-  footer: { tagline: string; address: string; rights: string };
+  faq: { eyebrow: string; title: string; items: FaqItem[] };
+  reviews: {
+    eyebrow: string;
+    title: string;
+    badge: string;
+    leaveReview: string;
+    prev: string;
+    next: string;
+    pageOf: string;
+    modalTitle: string;
+    formName: string;
+    formNamePlaceholder: string;
+    formRole: string;
+    formRolePlaceholder: string;
+    formRating: string;
+    formText: string;
+    formTextPlaceholder: string;
+    formSubmit: string;
+    formCancel: string;
+    thankYouTitle: string;
+    thankYouText: string;
+    thankYouClose: string;
+    items: ReviewItem[];
+  };
+  finalCta: {
+    title: string;
+    subtitle: string;
+    telegramCta: string;
+    callLabel: string;
+  };
+  location: {
+    eyebrow: string;
+    title: string;
+    addressLabel: string;
+    addressText: string;
+    howToLabel: string;
+    howToText: string;
+    parkingLabel: string;
+    parkingText: string;
+    openInMaps: string;
+  };
+  footer: {
+    tagline: string;
+    linksTitle: string;
+    contactTitle: string;
+    rights: string;
+  };
 }
 
 export const dictionaries: Record<Locale, Dictionary> = {
   et: {
     nav: {
-      links: ["Programm", "Galerii", "Hind", "Miks meie", "Kontakt"],
+      links: ["Programm", "Galerii", "Hind", "Miks meie", "KKK", "Kontakt"],
       cta: "Küsi pakkumist",
     },
     hero: {
@@ -169,21 +227,130 @@ export const dictionaries: Record<Locale, Dictionary> = {
         },
       ],
     },
+    faq: {
+      eyebrow: "KKK",
+      title: "Korduma kippuvad küsimused",
+      items: [
+        {
+          q: "Mis saab, kui ilm on halb või sajab vihma?",
+          a: "Jälgime ilma pidevalt ja anname teile teada juba mõni päev enne üritust. Programmi saab kohandada (nt SUP asemel rohkem rannamänge varjualuses) või leppida kokku uue kuupäeva. Kerge tuul ja pilves ilm ei sega — Eesti suvi on ju Eesti suvi.",
+        },
+        {
+          q: "Kui palju inimesi saab osaleda?",
+          a: "Tavaliselt 10–60 inimest ühe grupina. Suurema seltskonna puhul jagame mitmeks paralleelseks meeskonnaks, et kõik jõuaksid päriselt kaasa lüüa — kirjutage meile oma numbriga ja paneme kokku sobiva formaadi.",
+        },
+        {
+          q: "Kas keegi peab oskama ujuda või varasemalt SUP-i proovinud olema?",
+          a: "Ei. Kõik saavad põhjaliku instruktaaži enne vette minekut, päästevestid on alati olemas ja instruktorid on kogu aeg läheduses. Eelnevat kogemust pole vaja.",
+        },
+        {
+          q: "Mida peaksime endaga kaasa võtma?",
+          a: "Mugavad riided, mida ei karda niiskust, vahetuspaari ja head tuju. Käterätikud, päästevestid ja SUP-varustuse tagame meie. Toitlustuse osas leppige eraldi kokku — soovi korral aitame ka selle korraldada.",
+        },
+        {
+          q: "Kas programmi saab kohandada vastavalt meie soovidele?",
+          a: "Jah, alati. Baaspakett on hea lähtepunkt, aga sageli lisame sooviküsitud aktiivsusi, pikendame kestust või muudame rõhuasetust — helistage ja arutame teie eesmärgid läbi.",
+        },
+        {
+          q: "Kuidas ürituse broneerimine käib?",
+          a: "Kirjutage meile Telegramis või helistage numbril +372 55 512 872. Täpsustame kuupäeva, grupi suuruse ja soovid, saadame hinnapakkumise ning kuupäev on teie, kui kinnitate.",
+        },
+      ],
+    },
+    reviews: {
+      eyebrow: "TAGASISIDE",
+      title: "Mida kliendid ütlevad",
+      badge: "Kinnitatud klient",
+      leaveReview: "Jäta arvustus",
+      prev: "Eelmised",
+      next: "Järgmised",
+      pageOf: "lk",
+      modalTitle: "Jäta arvustus",
+      formName: "Sinu nimi",
+      formNamePlaceholder: "Nt Kadri Tamm",
+      formRole: "Firma / üritus (valikuline)",
+      formRolePlaceholder: "Nt Acme OÜ firmapäev",
+      formRating: "Hinnang",
+      formText: "Sinu kogemus",
+      formTextPlaceholder: "Räägi meile, milline oli teie üritus...",
+      formSubmit: "Saada arvustus",
+      formCancel: "Loobu",
+      thankYouTitle: "Aitäh!",
+      thankYouText:
+        "Sinu arvustus on saadetud ja ilmub siia pärast ülevaatamist. Hindame iga tagasisidet!",
+      thankYouClose: "Sulge",
+      items: [
+        {
+          name: "Kadri Tamm",
+          role: "HR-juht, tehnoloogiaettevõte",
+          rating: 5,
+          text: "Kogu tiim rääkis sellest veel nädalaid hiljem. SUP-fotosessioon droonilt oli täielik üllatus ja tõstis kogu päeva teisele tasandile.",
+          date: "2026-06-02",
+        },
+        {
+          name: "Marek Ilves",
+          role: "Meeskonnajuht, ehitusfirma",
+          rating: 5,
+          text: "Kartsime, et meie mehed ei võta tiimitöömänge tõsiselt, aga „Usaldustorn“ tõi välja päris ehtsa naeru ja koostöö. Korraldus oli laitmatu.",
+          date: "2026-05-20",
+        },
+        {
+          name: "Liina Sepp",
+          role: "Turundusjuht",
+          rating: 4,
+          text: "Väga hea päev, ainult tuul oli meie jaoks veidi tugev SUP-i osas — aga instruktorid kohandasid programmi kiirelt ja kõik said siiski vette.",
+          date: "2026-05-11",
+        },
+        {
+          name: "Toomas Rebane",
+          role: "Tegevjuht, väikeettevõte",
+          rating: 5,
+          text: "Broneerisime sünnipäevaks 25 inimesele. Kõik alates esimesest kõnest kuni lõkke ääres istumiseni oli hoolikalt läbi mõeldud.",
+          date: "2026-04-28",
+        },
+        {
+          name: "Anna Koval",
+          role: "Projektijuht, IT-firma",
+          rating: 5,
+          text: "„Meeskonna toteem“ oli meie üllatuslemmik — tundus algul veidi lapsik idee, aga tulemus rippus meie kontoris nädalaid.",
+          date: "2026-04-15",
+        },
+        {
+          name: "Peeter Org",
+          role: "Osakonnajuhataja, logistika",
+          rating: 5,
+          text: "Kõik läks täpselt graafikus ja instruktorid olid tõeliselt professionaalsed. Soovitame kindlasti teistelegi firmadele.",
+          date: "2026-03-30",
+        },
+      ],
+    },
     finalCta: {
       title: "Kas teil on omad ideed, kuidas üritust läbi viia?",
       subtitle: "Võtke julgelt ühendust — leiame koos teie jaoks ideaalse lahenduse!",
-      cta: "Võta ühendust",
-      phone: "+372 55 512 872",
+      telegramCta: "Kirjuta Telegramis",
+      callLabel: "või helista",
+    },
+    location: {
+      eyebrow: "ASUKOHT",
+      title: "Kus me asume",
+      addressLabel: "Aadress",
+      addressText: "Stroomi rand, Tallinn — ranna lõpuosa, Rocca al Mare poolne ots.",
+      howToLabel: "Kuidas kohale jõuda",
+      howToText: "Bussid nr 40 ja 48, peatus „Stroomi rand“ — u 20 minutit kesklinnast.",
+      parkingLabel: "Parkimine",
+      parkingText: "Tasuta parkla ranna ääres. Nädalavahetustel võib täis olla — tulge varem.",
+      openInMaps: "Ava Google Maps'is",
     },
     footer: {
       tagline: "Suverannaüritused Tallinnas alates 2013.",
-      address: "Stroomi rand, Tallinn",
+      linksTitle: "Lingid",
+      contactTitle: "Kontakt",
       rights: "Kõik õigused kaitstud.",
     },
   },
   en: {
     nav: {
-      links: ["Program", "Gallery", "Pricing", "Why us", "Contact"],
+      links: ["Program", "Gallery", "Pricing", "Why us", "FAQ", "Contact"],
       cta: "Get a quote",
     },
     hero: {
@@ -293,21 +460,130 @@ export const dictionaries: Record<Locale, Dictionary> = {
         },
       ],
     },
+    faq: {
+      eyebrow: "FAQ",
+      title: "Frequently asked questions",
+      items: [
+        {
+          q: "What happens if the weather is bad?",
+          a: "We track the forecast closely and let you know a few days in advance. The program can flex (more shaded activities instead of SUP, for example) or we agree on a new date together. Light wind or a cloudy sky won't stop us — this is the Baltic summer, after all.",
+        },
+        {
+          q: "How many people can join?",
+          a: "Usually 10–60 people as one group. For larger groups we split into parallel teams so everyone genuinely gets to take part — tell us your headcount and we'll put together the right format.",
+        },
+        {
+          q: "Does anyone need to know how to swim or have SUP experience?",
+          a: "No. Everyone gets a full briefing before getting on the water, life vests are always provided, and instructors stay close by the whole time. No prior experience needed.",
+        },
+        {
+          q: "What should we bring?",
+          a: "Comfortable clothes you don't mind getting a little wet, a change of clothes, and good energy. We provide towels, life vests and all SUP equipment. Catering is arranged separately — we're happy to help organise that too.",
+        },
+        {
+          q: "Can the program be customized?",
+          a: "Always. The base package is a strong starting point, but we regularly add requested activities, extend the duration, or shift the focus — call us and we'll talk through your goals.",
+        },
+        {
+          q: "How do we book a date?",
+          a: "Message us on Telegram or call +372 55 512 872. We'll confirm the date, group size and any special requests, send over a quote, and the date is yours once you confirm.",
+        },
+      ],
+    },
+    reviews: {
+      eyebrow: "FEEDBACK",
+      title: "What clients are saying",
+      badge: "Verified client",
+      leaveReview: "Leave a review",
+      prev: "Previous",
+      next: "Next",
+      pageOf: "page",
+      modalTitle: "Leave a review",
+      formName: "Your name",
+      formNamePlaceholder: "e.g. Kadri Tamm",
+      formRole: "Company / event (optional)",
+      formRolePlaceholder: "e.g. Acme Ltd company day",
+      formRating: "Rating",
+      formText: "Your experience",
+      formTextPlaceholder: "Tell us about your event...",
+      formSubmit: "Submit review",
+      formCancel: "Cancel",
+      thankYouTitle: "Thank you!",
+      thankYouText:
+        "Your review has been submitted and will appear here after a quick check. We appreciate every piece of feedback!",
+      thankYouClose: "Close",
+      items: [
+        {
+          name: "Kadri Tamm",
+          role: "HR Manager, tech company",
+          rating: 5,
+          text: "The whole team was still talking about it weeks later. The SUP drone photo shoot was a complete surprise and lifted the whole day to another level.",
+          date: "2026-06-02",
+        },
+        {
+          name: "Marek Ilves",
+          role: "Team lead, construction company",
+          rating: 5,
+          text: "We worried our guys wouldn't take the team games seriously, but the 'Trust Tower' brought out genuine laughter and real teamwork. Flawless organisation.",
+          date: "2026-05-20",
+        },
+        {
+          name: "Liina Sepp",
+          role: "Marketing manager",
+          rating: 4,
+          text: "Great day, the wind was a bit strong for SUP for us — but the instructors adapted the program quickly and everyone still got on the water.",
+          date: "2026-05-11",
+        },
+        {
+          name: "Toomas Rebane",
+          role: "CEO, small business",
+          rating: 5,
+          text: "We booked this for a birthday with 25 people. Everything from the first call to sitting by the bonfire was carefully thought through.",
+          date: "2026-04-28",
+        },
+        {
+          name: "Anna Koval",
+          role: "Project manager, IT company",
+          rating: 5,
+          text: "The 'Team Totem' was our surprise favourite — sounded a bit silly at first, but the result hung in our office for weeks.",
+          date: "2026-04-15",
+        },
+        {
+          name: "Peeter Org",
+          role: "Department head, logistics",
+          rating: 5,
+          text: "Everything ran exactly on schedule and the instructors were genuinely professional. Would definitely recommend to other companies.",
+          date: "2026-03-30",
+        },
+      ],
+    },
     finalCta: {
       title: "Have your own idea for the event?",
       subtitle: "Reach out — together we'll find the perfect solution for you!",
-      cta: "Get in touch",
-      phone: "+372 55 512 872",
+      telegramCta: "Message us on Telegram",
+      callLabel: "or call",
+    },
+    location: {
+      eyebrow: "LOCATION",
+      title: "Where we're located",
+      addressLabel: "Address",
+      addressText: "Stroomi Beach, Tallinn — the far end of the beach, toward Rocca al Mare.",
+      howToLabel: "How to get there",
+      howToText: "Bus routes 40 and 48, stop 'Stroomi rand' — about 20 minutes from the city centre.",
+      parkingLabel: "Parking",
+      parkingText: "Free parking right by the beach. Can fill up on weekends — arrive early.",
+      openInMaps: "Open in Google Maps",
     },
     footer: {
       tagline: "Summer beach events in Tallinn since 2013.",
-      address: "Stroomi Beach, Tallinn",
+      linksTitle: "Links",
+      contactTitle: "Contact",
       rights: "All rights reserved.",
     },
   },
   ru: {
     nav: {
-      links: ["Программа", "Галерея", "Стоимость", "Почему мы", "Контакты"],
+      links: ["Программа", "Галерея", "Стоимость", "Почему мы", "Вопросы", "Контакты"],
       cta: "Получить предложение",
     },
     hero: {
@@ -417,15 +693,124 @@ export const dictionaries: Record<Locale, Dictionary> = {
         },
       ],
     },
+    faq: {
+      eyebrow: "ВОПРОСЫ",
+      title: "Часто задаваемые вопросы",
+      items: [
+        {
+          q: "Что будет, если погода подведёт?",
+          a: "Мы внимательно следим за прогнозом и предупредим вас за несколько дней. Программу можно адаптировать (например, больше активностей под навесом вместо SUP) или согласовать новую дату. Лёгкий ветер и облачность нам не помеха — это же эстонское лето.",
+        },
+        {
+          q: "Сколько человек может участвовать?",
+          a: "Обычно 10–60 человек одной группой. Для больших коллективов делим на параллельные команды, чтобы каждый реально был вовлечён — напишите нам количество людей, и мы подберём формат.",
+        },
+        {
+          q: "Нужно ли уметь плавать или иметь опыт SUP?",
+          a: "Нет. Перед выходом на воду все проходят подробный инструктаж, спасательные жилеты выдаются всегда, а инструкторы находятся рядом всё время. Опыт не требуется.",
+        },
+        {
+          q: "Что взять с собой?",
+          a: "Удобную одежду, которую не жалко немного намочить, сменную одежду и хорошее настроение. Полотенца, жилеты и SUP-оборудование предоставляем мы. Питание обсуждается отдельно — с радостью поможем его организовать.",
+        },
+        {
+          q: "Можно ли адаптировать программу под нас?",
+          a: "Всегда. Базовый пакет — хорошая отправная точка, но мы регулярно добавляем активности по запросу, продлеваем длительность или смещаем акценты — звоните, обсудим ваши цели.",
+        },
+        {
+          q: "Как забронировать дату?",
+          a: "Напишите нам в Telegram или позвоните на +372 55 512 872. Согласуем дату, размер группы и пожелания, вышлем предложение — и дата ваша после подтверждения.",
+        },
+      ],
+    },
+    reviews: {
+      eyebrow: "ОТЗЫВЫ",
+      title: "Что говорят клиенты",
+      badge: "Проверенный клиент",
+      leaveReview: "Оставить отзыв",
+      prev: "Назад",
+      next: "Далее",
+      pageOf: "стр.",
+      modalTitle: "Оставить отзыв",
+      formName: "Ваше имя",
+      formNamePlaceholder: "Например, Кадри Тамм",
+      formRole: "Компания / мероприятие (необязательно)",
+      formRolePlaceholder: "Например, фирменный день Acme OÜ",
+      formRating: "Оценка",
+      formText: "Ваши впечатления",
+      formTextPlaceholder: "Расскажите, каким было ваше мероприятие...",
+      formSubmit: "Отправить отзыв",
+      formCancel: "Отмена",
+      thankYouTitle: "Спасибо!",
+      thankYouText:
+        "Ваш отзыв отправлен и появится здесь после проверки модератором. Ценим каждую обратную связь!",
+      thankYouClose: "Закрыть",
+      items: [
+        {
+          name: "Кадри Тамм",
+          role: "HR-директор, IT-компания",
+          rating: 5,
+          text: "Вся команда обсуждала это ещё несколько недель. Фотосессия с дрона на SUP стала полной неожиданностью и подняла весь день на другой уровень.",
+          date: "2026-06-02",
+        },
+        {
+          name: "Марек Ильвес",
+          role: "Тимлид, строительная компания",
+          rating: 5,
+          text: "Боялись, что наши ребята не воспримут тимбилдинг всерьёз, но «Башня доверия» вызвала настоящий смех и сплочённость. Организация была безупречной.",
+          date: "2026-05-20",
+        },
+        {
+          name: "Лийна Сепп",
+          role: "Директор по маркетингу",
+          rating: 4,
+          text: "Отличный день, только ветер был для нас слегка сильноват для SUP — но инструкторы быстро адаптировали программу, и все всё равно вышли на воду.",
+          date: "2026-05-11",
+        },
+        {
+          name: "Тоомас Ребане",
+          role: "Директор, малый бизнес",
+          rating: 5,
+          text: "Бронировали на день рождения для 25 человек. Всё, от первого звонка до посиделок у костра, было продумано до мелочей.",
+          date: "2026-04-28",
+        },
+        {
+          name: "Анна Коваль",
+          role: "Проектный менеджер, IT-компания",
+          rating: 5,
+          text: "«Тотем команды» стал нашим неожиданным фаворитом — сначала казалось немного по-детски, но результат провисел в нашем офисе несколько недель.",
+          date: "2026-04-15",
+        },
+        {
+          name: "Пеэтер Орг",
+          role: "Руководитель отдела, логистика",
+          rating: 5,
+          text: "Всё прошло точно по графику, инструкторы — настоящие профессионалы. Обязательно порекомендуем другим компаниям.",
+          date: "2026-03-30",
+        },
+      ],
+    },
     finalCta: {
       title: "Есть свои идеи, как провести мероприятие?",
       subtitle: "Смело связывайтесь — вместе найдём идеальное решение для вас!",
-      cta: "Связаться",
-      phone: "+372 55 512 872",
+      telegramCta: "Написать в Telegram",
+      callLabel: "или позвоните",
+    },
+    location: {
+      eyebrow: "МЕСТО ПРОВЕДЕНИЯ",
+      title: "Где мы находимся",
+      addressLabel: "Адрес",
+      addressText: "Stroomi rand, Таллинн — конец пляжа, ближе к Рокка-аль-Маре.",
+      howToLabel: "Как добраться",
+      howToText: "Автобусы №40, 48 до остановки «Stroomi rand» — около 20 минут от центра.",
+      parkingLabel: "Парковка",
+      parkingText: "Бесплатная парковка у пляжа. В выходные может быть занята — приезжайте заранее.",
+      openInMaps: "Открыть в Google Maps",
     },
     footer: {
       tagline: "Пляжные мероприятия в Таллинне с 2013 года.",
-      address: "Stroomi rand, Таллинн",
+      linksTitle: "Ссылки",
+      contactTitle: "Контакты",
       rights: "Все права защищены.",
     },
   },

@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/lib/language-context";
 import StringLights from "./StringLights";
+import { TELEGRAM_URL } from "@/lib/constants";
 
 export default function Pricing() {
   const { t } = useLanguage();
@@ -45,7 +46,9 @@ export default function Pricing() {
               </ul>
 
               <a
-                href="#contact"
+                href={TELEGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-gold text-ink px-7 py-3.5 font-label text-xs tracking-wideish uppercase font-medium hover:bg-ivory transition-colors"
               >
                 {t.pricing.cta}

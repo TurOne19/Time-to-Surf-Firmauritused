@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/lib/language-context";
 import { locales } from "@/lib/content";
+import { TELEGRAM_URL } from "@/lib/constants";
 
-const anchors = ["program", "gallery", "pricing", "why", "contact"];
+const anchors = ["program", "gallery", "pricing", "why", "faq", "contact"];
 
 export default function Nav() {
   const { t, locale, setLocale } = useLanguage();
@@ -58,7 +59,9 @@ export default function Nav() {
           </div>
 
           <a
-            href="#contact"
+            href={TELEGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden md:inline-flex items-center gap-2 border border-gold/70 text-gold px-4 py-2 text-xs font-label tracking-wideish uppercase hover:bg-gold hover:text-ink transition-colors"
           >
             {t.nav.cta}

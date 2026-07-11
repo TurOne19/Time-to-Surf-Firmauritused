@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/lib/language-context";
+import { TELEGRAM_URL, PHONE_TEL, PHONE_DISPLAY } from "@/lib/constants";
 
 export default function Hero() {
   const { t } = useLanguage();
@@ -39,7 +40,9 @@ export default function Hero() {
           style={{ animationDelay: "0.3s" }}
         >
           <a
-            href="#contact"
+            href={TELEGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-gold text-ink px-7 py-3.5 font-label text-xs tracking-wideish uppercase font-medium hover:bg-ivory transition-colors"
           >
             {t.hero.ctaPrimary}
@@ -51,14 +54,28 @@ export default function Hero() {
             {t.hero.ctaSecondary}
           </a>
           <a
-            href="tel:+37255512872"
+            href={`tel:${PHONE_TEL}`}
             className="inline-flex items-center gap-2 text-ivory/80 font-label text-xs tracking-wideish uppercase"
           >
             <span className="text-gold" aria-hidden="true">⟡</span>
-            {t.hero.phoneLabel} · +372 55 512 872
+            {t.hero.phoneLabel} · {PHONE_DISPLAY}
           </a>
         </div>
       </div>
+
+      {/* Signature: a gentle wave-cut edge instead of a hard rectangular cut,
+          transitioning the photo into the sand-colored section below. */}
+      <svg
+        className="absolute bottom-0 left-0 w-full h-[60px] md:h-[90px] text-sand"
+        viewBox="0 0 1440 90"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,45 L1440,90 L0,90 Z"
+          fill="currentColor"
+        />
+      </svg>
     </section>
   );
 }

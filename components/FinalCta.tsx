@@ -1,15 +1,13 @@
 "use client";
 
 import { useLanguage } from "@/lib/language-context";
+import { TELEGRAM_URL, PHONE_TEL, PHONE_DISPLAY } from "@/lib/constants";
 
 export default function FinalCta() {
   const { t } = useLanguage();
 
   return (
-    <section
-      id="contact"
-      className="relative bg-ink overflow-hidden"
-    >
+    <section id="contact" className="relative bg-ink overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center opacity-25"
         style={{ backgroundImage: "url('/hero.jpg')" }}
@@ -27,10 +25,28 @@ export default function FinalCta() {
 
         <div className="flex flex-wrap items-center justify-center gap-5">
           <a
-            href="tel:+37255512872"
-            className="inline-flex items-center gap-2 bg-gold text-ink px-8 py-4 font-label text-xs tracking-wideish uppercase font-medium hover:bg-ivory transition-colors"
+            href={TELEGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-gold text-ink px-8 py-4 font-label text-xs tracking-wideish uppercase font-medium hover:bg-ivory transition-colors"
           >
-            {t.finalCta.cta} · {t.finalCta.phone}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M21.5 3.5L2.5 11L9 13.5M21.5 3.5L18.5 20.5L9 13.5M21.5 3.5L9 13.5M9 13.5V19L12.3 15.9"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            {t.finalCta.telegramCta}
+          </a>
+
+          <a
+            href={`tel:${PHONE_TEL}`}
+            className="inline-flex items-center gap-2 text-ivory/75 font-label text-xs tracking-wideish uppercase hover:text-gold transition-colors"
+          >
+            {t.finalCta.callLabel} · {PHONE_DISPLAY}
           </a>
         </div>
       </div>

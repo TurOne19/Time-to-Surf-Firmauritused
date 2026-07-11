@@ -5,6 +5,7 @@ import Features from "@/components/Features";
 import Gallery from "@/components/Gallery";
 import Pricing from "@/components/Pricing";
 import Trust from "@/components/Trust";
+import FaqReviews from "@/components/FaqReviews";
 import FinalCta from "@/components/FinalCta";
 import Footer from "@/components/Footer";
 
@@ -18,6 +19,7 @@ export default function Home() {
       <Gallery />
       <Pricing />
       <Trust />
+      <FaqReviews />
       <FinalCta />
       <Footer />
     </main>
