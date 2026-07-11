@@ -79,6 +79,12 @@ export interface Dictionary {
   pricing: {
     eyebrow: string;
     title: string;
+    lead: string;
+    factors: FeatureItem[];
+    offerEyebrow: string;
+    offerTitle: string;
+    offerText: string;
+    responseNote: string;
     packageName: string;
     priceNote: string;
     includes: string[];
@@ -233,19 +239,28 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     pricing: {
       eyebrow: "INVESTEERING",
-      title: "Hind",
-      packageName: "Suvine rannafirmaüritus Time to Surf'ilt",
-      priceNote: "alates",
-      includes: [
-        "Rannaala rent 3,5 tundi",
-        "Ürituse ettevalmistus",
-        "Tiimitöö programm",
-        "SUP-laudade rent",
-        "Instrueerimine SUP-koolilt",
-        "Märgvarustus eraldi kokkuleppel — vastavalt ilmale",
+      title: "Mitte pakett. Teie meeskonna päev.",
+      lead: "Kaks meeskonda ei ole kunagi ühesugused. Seepärast kujuneb hind teie grupi, eesmärgi ja soovitud päevaformaadi järgi — maksate ainult selle eest, mis loob teie tiimile väärtust.",
+      factors: [
+        { title: "Personaalne programm", desc: "Paneme päeva kokku teie eesmärgi, tempo ja meeskonna iseloomu järgi." },
+        { title: "Tegevuste valik", desc: "SUP, tiimitöö, loominguline osa või rahulikum formaat — ainult sobiv kombinatsioon." },
+        { title: "Grupi suurus", desc: "Arvestame osalejate arvu, instruktorite meeskonna ja vajaliku varustusega." },
+        { title: "Lisateenused", desc: "Toitlustus, foto ja video, pikem õhtu või erilahendus lisanduvad ainult soovi korral." },
       ],
-      cta: "Küsi hinnapakkumist",
-      durationNote: "Keskmine kestus 3–4 tundi",
+      offerEyebrow: "Personaalne pakkumine",
+      offerTitle: "Koostame teie meeskonnale täpse päeva ja hinna",
+      offerText: "Kirjutage meile kuupäev, osalejate arv ja paar sõna oma soovidest. Vastame konkreetse, läbipaistva ettepanekuga.",
+      responseNote: "Kiire vastus Telegramis. Kohustusi ei kaasne.",
+      packageName: "Pakkumine sisaldab",
+      priceNote: "Baaspakett alates",
+      includes: [
+        "Teie meeskonnale loodud stsenaarium ja ajakava",
+        "Sobivate tegevuste ning varustuse valik",
+        "Arvestus kogu grupile ilma varjatud lisadeta",
+        "Võimalikud lisateenused eraldi välja toodud",
+      ],
+      cta: "Küsi pakkumist Telegramis",
+      durationNote: "Lõplik hind selgub pärast lühikest briifi",
     },
     trust: {
       eyebrow: "USALDUS",
@@ -487,19 +502,28 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     pricing: {
       eyebrow: "INVESTMENT",
-      title: "Pricing",
-      packageName: "Summer Beach Corporate Event by Time to Surf",
-      priceNote: "from",
-      includes: [
-        "3.5-hour beach station rental",
-        "Event preparation",
-        "Team-building program block",
-        "SUP board rental",
-        "Instruction from the SUP school",
-        "Wetsuits negotiated separately, depending on weather",
+      title: "Not a package. Your team's day.",
+      lead: "No two teams are the same. Your price reflects the group, the goal and the shape of the day you want — so you only pay for what creates real value for your team.",
+      factors: [
+        { title: "A tailored program", desc: "We shape the day around your objective, pace and team personality." },
+        { title: "The right activities", desc: "SUP, team challenges, a creative block or a calmer format — only the mix that fits." },
+        { title: "Group size", desc: "We account for participant numbers, the instructor team and all required equipment." },
+        { title: "Optional services", desc: "Catering, photo and video, a longer evening or special requests are added only when needed." },
       ],
-      cta: "Request a quote",
-      durationNote: "Average duration 3–4 hours",
+      offerEyebrow: "Personal proposal",
+      offerTitle: "A precise plan and price for your team",
+      offerText: "Send us your date, group size and a few words about what you want. We will reply with a clear, transparent proposal.",
+      responseNote: "Fast reply in Telegram. No obligation.",
+      packageName: "Your proposal includes",
+      priceNote: "Base format from",
+      includes: [
+        "A scenario and schedule designed for your team",
+        "The right mix of activities and equipment",
+        "A complete group calculation with no hidden extras",
+        "Optional services shown separately and clearly",
+      ],
+      cta: "Get a proposal in Telegram",
+      durationNote: "Final price follows a short briefing",
     },
     trust: {
       eyebrow: "TRUST",
@@ -741,19 +765,28 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     pricing: {
       eyebrow: "СТОИМОСТЬ",
-      title: "Стоимость",
-      packageName: "Летний корпоратив на пляже от Time to Surf",
-      priceNote: "от",
-      includes: [
-        "Аренда станции 3,5 часа",
-        "Подготовка мероприятия",
-        "Тимбилдинг-блок",
-        "Аренда SUP-досок",
-        "Инструктаж от школы по аренде SUP-досок",
-        "Гидроодежда оговаривается отдельно — по погоде",
+      title: "Не пакет. День вашей команды.",
+      lead: "Не бывает двух одинаковых команд. Поэтому стоимость зависит от состава группы, вашей цели и желаемого формата дня — вы платите только за то, что действительно создаёт ценность.",
+      factors: [
+        { title: "Индивидуальная программа", desc: "Собираем день под вашу цель, темп и характер команды." },
+        { title: "Разные активности", desc: "SUP, тимбилдинг, творчество или спокойный формат — только подходящее сочетание." },
+        { title: "Размер группы", desc: "Учитываем число участников, количество инструкторов и необходимую экипировку." },
+        { title: "Дополнительные услуги", desc: "Кейтеринг, фото и видео, продлённый вечер или особые пожелания добавляются только при необходимости." },
       ],
-      cta: "Получить предложение",
-      durationNote: "Средняя длительность 3–4 часа",
+      offerEyebrow: "Персональное предложение",
+      offerTitle: "Соберём точный сценарий и стоимость для вашей команды",
+      offerText: "Напишите дату, количество участников и пару слов о пожеланиях. Мы ответим конкретным и прозрачным предложением.",
+      responseNote: "Быстрый ответ в Telegram. Без обязательств.",
+      packageName: "В предложении будет",
+      priceNote: "Базовый формат от",
+      includes: [
+        "Сценарий и тайминг, созданные для вашей команды",
+        "Подходящий набор активностей и оборудования",
+        "Полный расчёт на группу без скрытых доплат",
+        "Дополнительные услуги отдельными понятными пунктами",
+      ],
+      cta: "Получить предложение в Telegram",
+      durationNote: "Финальная цена после короткого брифа",
     },
     trust: {
       eyebrow: "ДОВЕРИЕ",

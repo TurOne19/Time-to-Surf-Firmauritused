@@ -48,10 +48,10 @@ export default function Lightbox({ items, startIndex, photoLabel, videoLabel, on
       <button
         onClick={onClose}
         aria-label="Close"
-        className="absolute top-5 right-5 md:top-8 md:right-8 text-ivory/70 hover:text-gold transition-colors"
+        className="absolute right-4 top-4 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-ivory/60 bg-ivory/95 text-ink shadow-[0_6px_24px_rgba(0,0,0,0.28)] backdrop-blur-md transition-colors hover:border-gold hover:bg-gold md:right-7 md:top-7 md:h-14 md:w-14"
       >
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-          <path d="M5 5L19 19M19 5L5 19" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M5 5L19 19M19 5L5 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         </svg>
       </button>
 
@@ -61,10 +61,10 @@ export default function Lightbox({ items, startIndex, photoLabel, videoLabel, on
           setIndex((i) => (i - 1 + items.length) % items.length);
         }}
         aria-label="Previous"
-        className="absolute left-2 md:left-6 text-ivory/60 hover:text-gold transition-colors p-3"
+        className="absolute left-3 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-ivory/40 bg-ivory/95 text-ink shadow-[0_6px_24px_rgba(0,0,0,0.25)] transition-colors hover:border-gold hover:bg-gold md:left-7 md:h-14 md:w-14"
       >
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
-          <path d="M15 5L8 12L15 19" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        <svg width="25" height="25" viewBox="0 0 24 24" fill="none">
+          <path d="M15 5L8 12L15 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
 
@@ -101,10 +101,10 @@ export default function Lightbox({ items, startIndex, photoLabel, videoLabel, on
           setIndex((i) => (i + 1) % items.length);
         }}
         aria-label="Next"
-        className="absolute right-2 md:right-6 text-ivory/60 hover:text-gold transition-colors p-3"
+        className="absolute right-3 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-ivory/40 bg-ivory/95 text-ink shadow-[0_6px_24px_rgba(0,0,0,0.25)] transition-colors hover:border-gold hover:bg-gold md:right-7 md:h-14 md:w-14"
       >
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
-          <path d="M9 5L16 12L9 19" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        <svg width="25" height="25" viewBox="0 0 24 24" fill="none">
+          <path d="M9 5L16 12L9 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
 
