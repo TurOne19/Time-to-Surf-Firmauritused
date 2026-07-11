@@ -63,6 +63,12 @@ export interface Dictionary {
     eyebrow: string;
     title: string;
     subtitle: string;
+    storySubtitle: string;
+    storyNote: string;
+    curatedCaptions: string[];
+    curatedAlts: string[];
+    viewFull: string;
+    archiveTitle: string;
     filters: { all: string; photo: string; video: string };
     photoLabel: string;
     videoLabel: string;
@@ -212,6 +218,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
       eyebrow: "HETKED RANNAST",
       title: "Galerii",
       subtitle: "63 fotot ja 4 videot varasematest üritustest. Klõpsa suurendamiseks.",
+      storySubtitle: "Üks päev mere ääres — esimesest kohtumisest kuni sooja õhtuni koos.",
+      storyNote: "Mitte lihtsalt fotod. Hetked, millest saab teie meeskonna ühine lugu.",
+      curatedCaptions: ["Atmosfäär", "Inimesed", "Detailid", "Varustus", "Päeva finaal"],
+      curatedAlts: ["Time to Surf ürituse atmosfäär mere ääres", "Meeskond valmistub SUP-sõiduks", "Ettevalmistatud rannapaviljoni detailid", "SUP-lauad on meeskonnale valmis", "Ürituse soe finaal rannas"],
+      viewFull: "Vaata kogu galeriid",
+      archiveTitle: "Kogu sündmuste arhiiv",
       filters: { all: "Kõik", photo: "Fotod", video: "Videod" },
       photoLabel: "Foto",
       videoLabel: "Video",
@@ -460,6 +472,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
       eyebrow: "MOMENTS FROM THE BEACH",
       title: "Gallery",
       subtitle: "63 photos and 4 videos from past events. Click to enlarge.",
+      storySubtitle: "One day by the sea — from the first hello to a warm evening together.",
+      storyNote: "More than photographs. Moments that become your team's shared story.",
+      curatedCaptions: ["Atmosphere", "People", "Details", "Equipment", "The finale"],
+      curatedAlts: ["The atmosphere of a Time to Surf event by the sea", "A team getting ready for SUP", "Details of a prepared beach pavilion", "SUP boards ready for the team", "A warm event finale on the beach"],
+      viewFull: "View the full gallery",
+      archiveTitle: "Full event archive",
       filters: { all: "All", photo: "Photos", video: "Videos" },
       photoLabel: "Photo",
       videoLabel: "Video",
@@ -708,6 +726,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
       eyebrow: "МОМЕНТЫ С ПЛЯЖА",
       title: "Галерея",
       subtitle: "63 фото и 4 видео с прошлых мероприятий. Нажмите, чтобы увеличить.",
+      storySubtitle: "Один день у моря — от первой встречи до тёплого вечера вместе.",
+      storyNote: "Не просто фотографии. Моменты, которые становятся общей историей команды.",
+      curatedCaptions: ["Атмосфера", "Люди", "Детали", "Экипировка", "Финал дня"],
+      curatedAlts: ["Атмосфера мероприятия Time to Surf у моря", "Команда готовится к выходу на SUP", "Детали подготовленного пляжного павильона", "SUP-доски готовы для команды", "Тёплый финал мероприятия на пляже"],
+      viewFull: "Посмотреть всю галерею",
+      archiveTitle: "Полный архив мероприятий",
       filters: { all: "Все", photo: "Фото", video: "Видео" },
       photoLabel: "Фото",
       videoLabel: "Видео",

@@ -18,14 +18,14 @@ export default function Features() {
         <path d="M3 372C171 194 298 500 469 319S747 176 899 285" stroke="currentColor" />
       </svg>
 
-      <div className="relative mx-auto max-w-[90rem] px-5 py-28 sm:px-8 md:py-36 lg:px-12 lg:py-44">
+      <div className="relative mx-auto max-w-[90rem] px-5 py-28 sm:px-8 md:py-32 lg:px-12 lg:py-36">
         <Reveal className="grid gap-10 border-b border-ivory/15 pb-14 md:grid-cols-12 md:items-end md:pb-20">
           <div className="md:col-span-7">
             <p className="mb-6 flex items-center gap-3 font-label text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">
               <span className="h-px w-10 bg-gold" aria-hidden="true" />
               {t.features.eyebrow}
             </p>
-            <h2 className="max-w-3xl text-balance font-display text-4xl font-medium leading-[1.02] tracking-[-0.025em] text-ivory sm:text-5xl md:text-6xl lg:text-[4.75rem]">
+            <h2 className="max-w-3xl text-balance font-display text-4xl font-medium leading-[1.02] tracking-[-0.025em] text-ivory sm:text-5xl md:text-6xl lg:text-[4.25rem]">
               {t.features.title}
             </h2>
           </div>
@@ -48,14 +48,14 @@ export default function Features() {
           </div>
         </Reveal>
 
-        <ol className="relative mt-16 md:mt-24 lg:mt-28">
+        <ol className="relative mt-16 md:mt-20 lg:mt-24">
           <div className="absolute bottom-0 left-[18px] top-0 w-px bg-gradient-to-b from-gold/70 via-gold/30 to-gold/5 lg:left-1/2" aria-hidden="true" />
 
           {t.features.items.map((item, index) => {
             const isRight = index % 2 === 1;
 
             return (
-              <li key={item.title} className="relative pb-16 last:pb-0 md:pb-20 lg:pb-24">
+              <li key={item.title} className="relative pb-16 last:pb-0 md:pb-16 lg:pb-20">
                 <Reveal
                   delay={Math.min(index * 70, 280)}
                   className={`relative grid lg:grid-cols-2 ${isRight ? "lg:text-left" : "lg:text-right"}`}
@@ -71,7 +71,7 @@ export default function Features() {
                   }`}
                 >
                   <div className={`mb-5 flex items-end gap-4 ${isRight ? "" : "lg:justify-end"}`}>
-                    <span className="font-display text-6xl font-medium leading-none tracking-[-0.06em] text-gold md:text-7xl">
+                    <span className="font-display text-6xl font-medium leading-none tracking-[-0.06em] text-gold">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <span className="mb-1.5 font-label text-[10px] font-semibold uppercase tracking-[0.2em] text-ivory/40">
@@ -97,7 +97,7 @@ export default function Features() {
           })}
         </ol>
 
-        <div className="mt-20 flex items-center justify-between border-t border-ivory/10 pt-7 font-label text-[9px] uppercase tracking-[0.2em] text-ivory/30 md:mt-28">
+        <div className="mt-20 flex items-center justify-between border-t border-ivory/10 pt-7 font-label text-[9px] uppercase tracking-[0.2em] text-ivory/30 md:mt-20">
           <span>{t.features.timelineStart}</span>
           <span className="mx-5 h-px flex-1 bg-gradient-to-r from-gold/40 to-transparent" aria-hidden="true" />
           <span>{t.features.timelineEnd}</span>
