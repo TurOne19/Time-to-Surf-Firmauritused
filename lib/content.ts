@@ -38,7 +38,15 @@ export interface Dictionary {
     detailsLabel: string;
     details: string[];
   };
-  intro: { eyebrow: string; title: string; paragraphs: string[] };
+  intro: {
+    eyebrow: string;
+    title: string;
+    paragraphs: string[];
+    photoAlts: string[];
+    photoCaptions: string[];
+    journeyTitle: string;
+    journey: { title: string; detail: string }[];
+  };
   suitedFor: { title: string; items: string[] };
   features: {
     eyebrow: string;
@@ -140,6 +148,14 @@ export const dictionaries: Record<Locale, Dictionary> = {
         "Aitab igavatest restoranidest ja formaalsest istumisest. On aeg tiim päriselt taaskäivitada — läbi hoo, liikumise, mere ja naeru.",
         "Loome teie firmale unustamatu suvepäeva Tallinna Stroomi rannas: tiimitöö, SUP-lauasõit merel ja soe õhtu lõkketule ääres.",
         "Individuaalne programm on alati võimalik — helistage ja leiame koos parima lahenduse.",
+      ],
+      photoAlts: ["Meeskond valmistub koos SUP-lauasõiduks", "Valmis rannapaviljon külalistega"],
+      photoCaptions: ["Päev algab koos", "Kõik on teie jaoks valmis"],
+      journeyTitle: "Teie päev mere ääres",
+      journey: [
+        { title: "Saabumine", detail: "Teie meeskond saabub — kõik on juba valmis." },
+        { title: "Ühine päev", detail: "Hoiame programmi, tempot ja kõiki detaile." },
+        { title: "Soe õhtu", detail: "Aega vestelda, puhata ja lihtsalt koos olla." },
       ],
     },
     suitedFor: {
@@ -376,6 +392,14 @@ export const dictionaries: Record<Locale, Dictionary> = {
         "We build an unforgettable summer day for your company at Stroomi beach in Tallinn: team-building, SUP on the open water, and a warm evening by the fire.",
         "A fully custom program is always possible — call us and we'll find the best solution together.",
       ],
+      photoAlts: ["A team getting ready for SUP together", "A prepared beach pavilion with guests"],
+      photoCaptions: ["The day begins together", "Everything is ready for you"],
+      journeyTitle: "Your day by the sea",
+      journey: [
+        { title: "Arrival", detail: "Your team arrives — everything is already prepared." },
+        { title: "A day together", detail: "We take care of the program, pace and every detail." },
+        { title: "A warm evening", detail: "Time to talk, unwind and simply be together." },
+      ],
     },
     suitedFor: {
       title: "Perfect for:",
@@ -610,6 +634,14 @@ export const dictionaries: Record<Locale, Dictionary> = {
         "Хватит скучных ресторанов и формальных посиделок. Пора по-настоящему перезагрузить команду — через драйв, движение, море и смех.",
         "Мы создаём незабываемый летний день для вашей команды на Stroomi rand в Таллинне: тимбилдинг, SUP-прогулка по морю и тёплый вечер у костра.",
         "Есть возможность создать индивидуальную программу под ваш запрос — позвоните, и мы вместе найдём лучшее решение.",
+      ],
+      photoAlts: ["Команда вместе готовится к выходу на SUP", "Подготовленный пляжный павильон с гостями"],
+      photoCaptions: ["День начинается вместе", "Всё уже готово для вас"],
+      journeyTitle: "Ваш день у моря",
+      journey: [
+        { title: "Приезд", detail: "Ваша команда приезжает — всё уже готово." },
+        { title: "День вместе", detail: "Мы ведём программу, держим ритм и следим за деталями." },
+        { title: "Тёплый вечер", detail: "Время общаться, отдыхать и просто быть вместе." },
       ],
     },
     suitedFor: {
