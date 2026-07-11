@@ -106,6 +106,9 @@ export interface Dictionary {
     companies: string[];
     eventSizes: string[];
     caseLabel: string;
+    emptyTitle: string;
+    emptyText: string;
+    moderationNote: string;
     badge: string;
     leaveReview: string;
     prev: string;
@@ -116,6 +119,15 @@ export interface Dictionary {
     formNamePlaceholder: string;
     formRole: string;
     formRolePlaceholder: string;
+    formCompany: string;
+    formCompanyPlaceholder: string;
+    formEventType: string;
+    formEventTypes: string[];
+    formEventSize: string;
+    formEventDate: string;
+    formContact: string;
+    formContactPlaceholder: string;
+    formConsent: string;
     formRating: string;
     formText: string;
     formTextPlaceholder: string;
@@ -330,9 +342,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
     reviews: {
       eyebrow: "TAGASISIDE",
       title: "Mida kliendid ütlevad",
-      companies: ["Tehnoloogiaettevõte", "Ehitusettevõte", "Turundusagentuur", "Väikeettevõte", "IT-ettevõte", "Logistikaettevõte"],
-      eventSizes: ["42 osalejat", "28 osalejat", "36 osalejat", "25 osalejat", "31 osalejat", "54 osalejat"],
+      companies: [],
+      eventSizes: [],
       caseLabel: "Ettevõtete üritused",
+      emptyTitle: "Teie kogemus võib olla siin esimene",
+      emptyText: "Me ei avalda näidis- ega väljamõeldud arvustusi. Kui olete juba meiega mere ääres käinud, jagage oma ausat kogemust.",
+      moderationNote: "Iga arvustus vaadatakse enne avaldamist üle. Ettevõtte nime näitame ainult teie loal.",
       badge: "Kinnitatud klient",
       leaveReview: "Jäta arvustus",
       prev: "Eelmised",
@@ -341,8 +356,17 @@ export const dictionaries: Record<Locale, Dictionary> = {
       modalTitle: "Jäta arvustus",
       formName: "Sinu nimi",
       formNamePlaceholder: "Nt Kadri Tamm",
-      formRole: "Firma / üritus (valikuline)",
-      formRolePlaceholder: "Nt Acme OÜ firmapäev",
+      formRole: "Amet / roll (valikuline)",
+      formRolePlaceholder: "Nt personalijuht",
+      formCompany: "Ettevõte",
+      formCompanyPlaceholder: "Nt Acme OÜ",
+      formEventType: "Ürituse formaat",
+      formEventTypes: ["Firmapäev", "Tiimiüritus", "Sünnipäev", "Erasündmus", "Muu"],
+      formEventSize: "Osalejate arv",
+      formEventDate: "Ürituse kuupäev",
+      formContact: "E-post või Telegram",
+      formContactPlaceholder: "Kontrollimiseks, ei avaldata",
+      formConsent: "Nõustun, et arvustuse tekst võidakse pärast modereerimist veebilehel avaldada.",
       formRating: "Hinnang",
       formText: "Sinu kogemus",
       formTextPlaceholder: "Räägi meile, milline oli teie üritus...",
@@ -352,50 +376,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       thankYouText:
         "Sinu arvustus on saadetud ja ilmub siia pärast ülevaatamist. Hindame iga tagasisidet!",
       thankYouClose: "Sulge",
-      items: [
-        {
-          name: "Kadri Tamm",
-          role: "HR-juht, tehnoloogiaettevõte",
-          rating: 5,
-          text: "Kogu tiim rääkis sellest veel nädalaid hiljem. SUP-fotosessioon droonilt oli täielik üllatus ja tõstis kogu päeva teisele tasandile.",
-          date: "2026-06-02",
-        },
-        {
-          name: "Marek Ilves",
-          role: "Meeskonnajuht, ehitusfirma",
-          rating: 5,
-          text: "Kartsime, et meie mehed ei võta tiimitöömänge tõsiselt, aga „Usaldustorn“ tõi välja päris ehtsa naeru ja koostöö. Korraldus oli laitmatu.",
-          date: "2026-05-20",
-        },
-        {
-          name: "Liina Sepp",
-          role: "Turundusjuht",
-          rating: 4,
-          text: "Väga hea päev, ainult tuul oli meie jaoks veidi tugev SUP-i osas — aga instruktorid kohandasid programmi kiirelt ja kõik said siiski vette.",
-          date: "2026-05-11",
-        },
-        {
-          name: "Toomas Rebane",
-          role: "Tegevjuht, väikeettevõte",
-          rating: 5,
-          text: "Broneerisime sünnipäevaks 25 inimesele. Kõik alates esimesest kõnest kuni lõkke ääres istumiseni oli hoolikalt läbi mõeldud.",
-          date: "2026-04-28",
-        },
-        {
-          name: "Anna Koval",
-          role: "Projektijuht, IT-firma",
-          rating: 5,
-          text: "„Meeskonna toteem“ oli meie üllatuslemmik — tundus algul veidi lapsik idee, aga tulemus rippus meie kontoris nädalaid.",
-          date: "2026-04-15",
-        },
-        {
-          name: "Peeter Org",
-          role: "Osakonnajuhataja, logistika",
-          rating: 5,
-          text: "Kõik läks täpselt graafikus ja instruktorid olid tõeliselt professionaalsed. Soovitame kindlasti teistelegi firmadele.",
-          date: "2026-03-30",
-        },
-      ],
+      items: [],
     },
     finalCta: {
       title: "Kas teil on omad ideed, kuidas üritust läbi viia?",
@@ -599,9 +580,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
     reviews: {
       eyebrow: "FEEDBACK",
       title: "What clients are saying",
-      companies: ["Technology company", "Construction company", "Marketing agency", "Small business", "IT company", "Logistics company"],
-      eventSizes: ["42 guests", "28 guests", "36 guests", "25 guests", "31 guests", "54 guests"],
+      companies: [],
+      eventSizes: [],
       caseLabel: "Corporate events",
+      emptyTitle: "Your experience can be the first one here",
+      emptyText: "We do not publish sample or invented reviews. If you have already spent a day by the sea with us, share your honest experience.",
+      moderationNote: "Every review is checked before publication. We show the company name only with your permission.",
       badge: "Verified client",
       leaveReview: "Leave a review",
       prev: "Previous",
@@ -610,8 +594,17 @@ export const dictionaries: Record<Locale, Dictionary> = {
       modalTitle: "Leave a review",
       formName: "Your name",
       formNamePlaceholder: "e.g. Kadri Tamm",
-      formRole: "Company / event (optional)",
-      formRolePlaceholder: "e.g. Acme Ltd company day",
+      formRole: "Job title / role (optional)",
+      formRolePlaceholder: "e.g. HR manager",
+      formCompany: "Company",
+      formCompanyPlaceholder: "e.g. Acme Ltd",
+      formEventType: "Event format",
+      formEventTypes: ["Company day", "Team event", "Birthday", "Private event", "Other"],
+      formEventSize: "Number of guests",
+      formEventDate: "Event date",
+      formContact: "Email or Telegram",
+      formContactPlaceholder: "For verification, never published",
+      formConsent: "I agree that the review text may be published on the website after moderation.",
       formRating: "Rating",
       formText: "Your experience",
       formTextPlaceholder: "Tell us about your event...",
@@ -621,50 +614,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       thankYouText:
         "Your review has been submitted and will appear here after a quick check. We appreciate every piece of feedback!",
       thankYouClose: "Close",
-      items: [
-        {
-          name: "Kadri Tamm",
-          role: "HR Manager, tech company",
-          rating: 5,
-          text: "The whole team was still talking about it weeks later. The SUP drone photo shoot was a complete surprise and lifted the whole day to another level.",
-          date: "2026-06-02",
-        },
-        {
-          name: "Marek Ilves",
-          role: "Team lead, construction company",
-          rating: 5,
-          text: "We worried our guys wouldn't take the team games seriously, but the 'Trust Tower' brought out genuine laughter and real teamwork. Flawless organisation.",
-          date: "2026-05-20",
-        },
-        {
-          name: "Liina Sepp",
-          role: "Marketing manager",
-          rating: 4,
-          text: "Great day, the wind was a bit strong for SUP for us — but the instructors adapted the program quickly and everyone still got on the water.",
-          date: "2026-05-11",
-        },
-        {
-          name: "Toomas Rebane",
-          role: "CEO, small business",
-          rating: 5,
-          text: "We booked this for a birthday with 25 people. Everything from the first call to sitting by the bonfire was carefully thought through.",
-          date: "2026-04-28",
-        },
-        {
-          name: "Anna Koval",
-          role: "Project manager, IT company",
-          rating: 5,
-          text: "The 'Team Totem' was our surprise favourite — sounded a bit silly at first, but the result hung in our office for weeks.",
-          date: "2026-04-15",
-        },
-        {
-          name: "Peeter Org",
-          role: "Department head, logistics",
-          rating: 5,
-          text: "Everything ran exactly on schedule and the instructors were genuinely professional. Would definitely recommend to other companies.",
-          date: "2026-03-30",
-        },
-      ],
+      items: [],
     },
     finalCta: {
       title: "Have your own idea for the event?",
@@ -868,9 +818,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
     reviews: {
       eyebrow: "ОТЗЫВЫ",
       title: "Что говорят клиенты",
-      companies: ["Технологическая компания", "Строительная компания", "Маркетинговое агентство", "Малый бизнес", "IT-компания", "Логистическая компания"],
-      eventSizes: ["42 участника", "28 участников", "36 участников", "25 участников", "31 участник", "54 участника"],
+      companies: [],
+      eventSizes: [],
       caseLabel: "Корпоративные мероприятия",
+      emptyTitle: "Ваш отзыв может стать здесь первым",
+      emptyText: "Мы не публикуем демонстрационные или выдуманные отзывы. Если вы уже проводили день у моря вместе с нами — поделитесь честным опытом.",
+      moderationNote: "Каждый отзыв проверяется перед публикацией. Название компании показываем только с вашего разрешения.",
       badge: "Проверенный клиент",
       leaveReview: "Оставить отзыв",
       prev: "Назад",
@@ -879,8 +832,17 @@ export const dictionaries: Record<Locale, Dictionary> = {
       modalTitle: "Оставить отзыв",
       formName: "Ваше имя",
       formNamePlaceholder: "Например, Кадри Тамм",
-      formRole: "Компания / мероприятие (необязательно)",
-      formRolePlaceholder: "Например, фирменный день Acme OÜ",
+      formRole: "Должность / роль (необязательно)",
+      formRolePlaceholder: "Например, HR-директор",
+      formCompany: "Компания",
+      formCompanyPlaceholder: "Например, Acme OÜ",
+      formEventType: "Формат мероприятия",
+      formEventTypes: ["Корпоративный день", "Тимбилдинг", "День рождения", "Частное мероприятие", "Другое"],
+      formEventSize: "Количество участников",
+      formEventDate: "Дата мероприятия",
+      formContact: "Email или Telegram",
+      formContactPlaceholder: "Для проверки, не публикуется",
+      formConsent: "Я согласен, что текст отзыва может быть опубликован на сайте после модерации.",
       formRating: "Оценка",
       formText: "Ваши впечатления",
       formTextPlaceholder: "Расскажите, каким было ваше мероприятие...",
@@ -890,50 +852,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
       thankYouText:
         "Ваш отзыв отправлен и появится здесь после проверки модератором. Ценим каждую обратную связь!",
       thankYouClose: "Закрыть",
-      items: [
-        {
-          name: "Кадри Тамм",
-          role: "HR-директор, IT-компания",
-          rating: 5,
-          text: "Вся команда обсуждала это ещё несколько недель. Фотосессия с дрона на SUP стала полной неожиданностью и подняла весь день на другой уровень.",
-          date: "2026-06-02",
-        },
-        {
-          name: "Марек Ильвес",
-          role: "Тимлид, строительная компания",
-          rating: 5,
-          text: "Боялись, что наши ребята не воспримут тимбилдинг всерьёз, но «Башня доверия» вызвала настоящий смех и сплочённость. Организация была безупречной.",
-          date: "2026-05-20",
-        },
-        {
-          name: "Лийна Сепп",
-          role: "Директор по маркетингу",
-          rating: 4,
-          text: "Отличный день, только ветер был для нас слегка сильноват для SUP — но инструкторы быстро адаптировали программу, и все всё равно вышли на воду.",
-          date: "2026-05-11",
-        },
-        {
-          name: "Тоомас Ребане",
-          role: "Директор, малый бизнес",
-          rating: 5,
-          text: "Бронировали на день рождения для 25 человек. Всё, от первого звонка до посиделок у костра, было продумано до мелочей.",
-          date: "2026-04-28",
-        },
-        {
-          name: "Анна Коваль",
-          role: "Проектный менеджер, IT-компания",
-          rating: 5,
-          text: "«Тотем команды» стал нашим неожиданным фаворитом — сначала казалось немного по-детски, но результат провисел в нашем офисе несколько недель.",
-          date: "2026-04-15",
-        },
-        {
-          name: "Пеэтер Орг",
-          role: "Руководитель отдела, логистика",
-          rating: 5,
-          text: "Всё прошло точно по графику, инструкторы — настоящие профессионалы. Обязательно порекомендуем другим компаниям.",
-          date: "2026-03-30",
-        },
-      ],
+      items: [],
     },
     finalCta: {
       title: "Есть свои идеи, как провести мероприятие?",
