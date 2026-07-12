@@ -147,6 +147,8 @@ export interface Dictionary {
   location: {
     eyebrow: string;
     title: string;
+    advantageTitle: string;
+    advantageText: string;
     addressLabel: string;
     addressText: string;
     howToLabel: string;
@@ -386,7 +388,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     location: {
       eyebrow: "ASUKOHT",
-      title: "Kus me asume",
+      title: "Meri on lähemal, kui tundub",
+      advantageTitle: "20 minutit kesklinnast",
+      advantageText: "Päris rand ja meri Tallinna sees — meeskond ei pea elamuse jaoks linnast kaugele sõitma.",
       addressLabel: "Aadress",
       addressText: "Stroomi rand, Tallinn — ranna lõpuosa, Rocca al Mare poolne ots.",
       howToLabel: "Kuidas kohale jõuda",
@@ -624,7 +628,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     location: {
       eyebrow: "LOCATION",
-      title: "Where we're located",
+      title: "The sea is closer than it feels",
+      advantageTitle: "20 minutes from the city centre",
+      advantageText: "A real beach and open water inside Tallinn — your team does not need a long trip to step out of the everyday.",
       addressLabel: "Address",
       addressText: "Stroomi Beach, Tallinn — the far end of the beach, toward Rocca al Mare.",
       howToLabel: "How to get there",
@@ -862,7 +868,9 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     location: {
       eyebrow: "МЕСТО ПРОВЕДЕНИЯ",
-      title: "Где мы находимся",
+      title: "Море ближе, чем кажется",
+      advantageTitle: "20 минут от центра Таллинна",
+      advantageText: "Настоящий пляж и море в черте города — команде не нужно далеко ехать, чтобы полностью сменить обстановку.",
       addressLabel: "Адрес",
       addressText: "Stroomi rand, Таллинн — конец пляжа, ближе к Рокка-аль-Маре.",
       howToLabel: "Как добраться",
