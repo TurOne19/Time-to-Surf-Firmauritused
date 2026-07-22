@@ -12,11 +12,11 @@ type Filter = "all" | "photo" | "video";
 const INITIAL_COUNT = 16;
 
 const curatedItems: GalleryItem[] = [
-  { id: "story-atmosphere", index: 1, type: "photo", src: "/hero.jpg" },
-  { id: "story-people", index: 2, type: "photo", src: "/intro-team.jpg" },
-  { id: "story-details", index: 3, type: "photo", src: "/intro-evening.jpg" },
-  { id: "story-equipment", index: 4, type: "photo", src: "/intro-team.jpg" },
-  { id: "story-finale", index: 5, type: "photo", src: "/intro-evening.jpg" },
+  { id: "story-atmosphere", index: 1, type: "photo", src: "/gallery/DSC_8879.jpg" },
+  { id: "story-people", index: 2, type: "photo", src: "/gallery/DSC_8978.jpg" },
+  { id: "story-details", index: 3, type: "photo", src: "/gallery/IMG_8781.JPG" },
+  { id: "story-equipment", index: 4, type: "photo", src: "/gallery/DSC_9001.jpg" },
+  { id: "story-finale", index: 5, type: "photo", src: "/gallery/DSC_8989.jpg" },
 ];
 
 const curatedTiles = [

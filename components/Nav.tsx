@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/lib/language-context";
-import { locales } from "@/lib/content";
+import { locales } from "@/lib/content-v2";
 import { TELEGRAM_URL } from "@/lib/constants";
 
 const anchors = ["program", "gallery", "pricing", "why", "faq", "contact"];

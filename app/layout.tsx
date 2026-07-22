@@ -42,9 +42,10 @@ const grotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Time to Surf — Suvine firmapidu rannas | Stroomi rand, Tallinn",
+  title: "Suvine rannaüritus - Stroomi Rand, Time to surf",
   description:
-    "Suvine rannaüritus tiimidele: SUP, tiimitöö ja päikeseloojang Stroomi rannas. Time to Surf — üle 10 aasta kogemust.",
+    "Ettevõttepäev mere ääres Stroomi rannas: turvaline veeprogramm, instruktorid ja varustus Time to Surfilt.",
+  icons: { icon: "/favicon.png", apple: "/favicon.png" },
 };
 
 export default function RootLayout({

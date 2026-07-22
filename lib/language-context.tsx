@@ -9,7 +9,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { Locale, Dictionary, dictionaries, defaultLocale } from "./content";
+import { Locale, Dictionary, dictionaries, defaultLocale } from "./content-v2";
 
 const LOCALE_STORAGE_KEY = "time-to-surf-locale";
 const SCROLL_STORAGE_KEY = "time-to-surf-scroll";
@@ -30,6 +30,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocale] = useState<Locale>(defaultLocale);
   const [preferencesLoaded, setPreferencesLoaded] = useState(false);
   const initialScrollY = useRef<number | null>(null);
+  const initialHash = useRef<string | null>(null);
 
   useEffect(() => {
     const savedLocale = window.localStorage.getItem(LOCALE_STORAGE_KEY);
@@ -37,7 +38,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
     if (isLocale(savedLocale)) setLocale(savedLocale);
 
-    if (!window.location.hash && savedScroll !== null) {
+    if (window.location.hash) {
+      initialHash.current = window.location.hash;
+    } else if (savedScroll !== null) {
       const scrollY = Number(savedScroll);
       if (Number.isFinite(scrollY) && scrollY >= 0) initialScrollY.current = scrollY;
     }
@@ -51,13 +54,24 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   }, [locale]);
 
   useEffect(() => {
-    if (!preferencesLoaded || initialScrollY.current === null) return;
+    if (!preferencesLoaded || (initialScrollY.current === null && initialHash.current === null)) return;
 
     const scrollY = initialScrollY.current;
+    const hash = initialHash.current;
     initialScrollY.current = null;
+    initialHash.current = null;
     window.history.scrollRestoration = "manual";
 
-    const restoreScroll = () => window.scrollTo({ top: scrollY, left: 0 });
+    const restoreScroll = () => {
+      const previousScrollBehavior = document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior = "auto";
+      if (hash) {
+        document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView();
+      } else if (scrollY !== null) {
+        window.scrollTo({ top: scrollY, left: 0 });
+      }
+      document.documentElement.style.scrollBehavior = previousScrollBehavior;
+    };
     const frame = window.requestAnimationFrame(() => {
       restoreScroll();
       window.requestAnimationFrame(restoreScroll);

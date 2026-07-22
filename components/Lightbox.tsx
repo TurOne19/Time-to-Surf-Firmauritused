@@ -72,7 +72,19 @@ export default function Lightbox({ items, startIndex, photoLabel, videoLabel, on
         className="relative max-w-3xl w-full max-h-[80vh] aspect-[4/5] md:aspect-[16/10]"
         onClick={(e) => e.stopPropagation()}
       >
-        {!errored && imgSrc ? (
+        {!errored && item.type === "video" ? (
+          <video
+            src={item.src}
+            poster={item.poster}
+            controls
+            autoPlay
+            playsInline
+            className="h-full w-full object-contain"
+            onError={() => setErrored(true)}
+          >
+            {videoLabel}
+          </video>
+        ) : !errored && imgSrc ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={imgSrc}

@@ -10,7 +10,7 @@ export default function FinalCta() {
   return (
     <section id="contact" className="relative flex min-h-[88svh] items-end overflow-hidden bg-ink">
       <Image
-        src="/intro-team.jpg"
+        src="/gallery/DSC_8897.jpg"
         alt=""
         fill
         className="object-cover object-[62%_center]"
@@ -23,12 +23,16 @@ export default function FinalCta() {
         <div className="max-w-4xl">
           <p className="mb-7 flex items-center gap-3 font-label text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">
             <span className="h-px w-10 bg-gold" aria-hidden="true" />
-            {t.finalCta.subtitle}
+            {t.finalCta.eyebrow}
           </p>
 
           <h2 className="max-w-4xl text-balance font-display text-4xl font-medium leading-[1.02] tracking-[-0.03em] text-ivory sm:text-6xl md:text-7xl lg:text-[5.5rem]">
             {t.finalCta.title}
           </h2>
+
+          <p className="mt-7 max-w-2xl font-body text-base leading-relaxed text-ivory/80 md:text-lg">
+            {t.finalCta.subtitle}
+          </p>
 
           <a
             href={TELEGRAM_URL}

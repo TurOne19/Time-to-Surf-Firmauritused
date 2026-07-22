@@ -103,8 +103,16 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-ivory/10">
-        <div className="max-w-7xl mx-auto px-5 md:px-8 py-5 font-label text-[11px] tracking-wideish uppercase text-ivory/35">
-          © {year} Time to Surf — {t.footer.rights}
+        <div className="max-w-7xl mx-auto flex flex-col gap-3 px-5 py-5 font-label text-[11px] uppercase tracking-wideish text-ivory/35 sm:flex-row sm:items-center sm:justify-between md:px-8">
+          <span>© {year} TIME TO SURF — {t.footer.rights}</span>
+          <a
+            href="https://northpixel.ee"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-fit rounded-full border border-ivory/20 px-4 py-2 text-ivory/55 transition-colors hover:border-gold hover:text-gold"
+          >
+            Webpage by northpixel
+          </a>
         </div>
       </div>
     </footer>

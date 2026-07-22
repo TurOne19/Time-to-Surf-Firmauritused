@@ -65,7 +65,7 @@ export default function Intro() {
             <figure className="relative w-[92%] sm:w-[82%] lg:w-[78%]">
               <div className="relative aspect-[4/3] overflow-hidden bg-sand-2">
                 <Image
-                  src="/intro-team.jpg"
+                  src="/gallery/IMG_9183.JPG"
                   alt={t.intro.photoAlts[0]}
                   fill
                   priority
@@ -83,7 +83,7 @@ export default function Intro() {
             <figure className="relative z-10 -mt-8 ml-auto w-[58%] sm:-mt-20 sm:w-[48%] lg:absolute lg:right-0 lg:top-[245px] lg:mt-0 lg:w-[43%]">
               <div className="relative aspect-[3/4] overflow-hidden border-[8px] border-sand bg-sand-2 sm:border-[12px]">
                 <Image
-                  src="/intro-evening.jpg"
+                  src="/gallery/IMG_8785.JPG"
                   alt={t.intro.photoAlts[1]}
                   fill
                   className="object-cover object-center"
@@ -110,7 +110,7 @@ export default function Intro() {
                         <span className="font-label text-[9px] tracking-[0.16em] text-gold">0{index + 1}</span>
                         <h3 className="font-display text-lg text-ink">{step.title}</h3>
                       </div>
-                      <p className="mt-1 pl-7 font-body text-xs leading-relaxed text-ink/55">{step.detail}</p>
+                      <p className="mt-1 pl-7 font-body text-xs leading-relaxed text-ink/55">{step.desc}</p>
                     </div>
                   </li>
                 ))}

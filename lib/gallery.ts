@@ -18,24 +18,25 @@ const tones: [string, string][] = [
   ["#D9A94E", "#8A5A2E"],
 ];
 
-export const PHOTO_COUNT = 63;
-export const VIDEO_COUNT = 4;
+const photoFiles = [
+  "DSC_8879.jpg", "DSC_8897.jpg", "DSC_8900.jpg", "DSC_8938.jpg",
+  "DSC_8978.jpg", "DSC_8986.jpg", "DSC_8989.jpg", "DSC_9001.jpg",
+  "DSC_9017.jpg", "IMG_8779.JPG", "IMG_8781.JPG", "IMG_8785.JPG",
+  "IMG_8818.JPG", "IMG_9183.JPG",
+];
 
 export function getGalleryItems(): GalleryItem[] {
-  const photos: GalleryItem[] = Array.from({ length: PHOTO_COUNT }, (_, i) => ({
+  const photos: GalleryItem[] = photoFiles.map((file, i) => ({
     id: `photo-${i + 1}`,
     index: i + 1,
     type: "photo",
-    src: `/gallery/photo-${String(i + 1).padStart(2, "0")}.jpg`,
+    src: `/gallery/${file}`,
   }));
 
-  const videos: GalleryItem[] = Array.from({ length: VIDEO_COUNT }, (_, i) => ({
-    id: `video-${i + 1}`,
-    index: i + 1,
-    type: "video",
-    src: `/gallery/video-${String(i + 1).padStart(2, "0")}.mp4`,
-    poster: `/gallery/video-${String(i + 1).padStart(2, "0")}-poster.jpg`,
-  }));
+  const videos: GalleryItem[] = [{
+    id: "video-1", index: 1, type: "video", src: "/gallery/IMG_8820.mp4",
+    poster: "/gallery/DSC_8900.jpg",
+  }];
 
   // Interleave a video roughly every 15 photos so the grid does not clump
   // all videos in one place once real files are added.
@@ -43,7 +44,7 @@ export function getGalleryItems(): GalleryItem[] {
   let vi = 0;
   photos.forEach((p, i) => {
     merged.push(p);
-    if ((i + 1) % 15 === 0 && vi < videos.length) {
+    if ((i + 1) % 7 === 0 && vi < videos.length) {
       merged.push(videos[vi]);
       vi += 1;
     }

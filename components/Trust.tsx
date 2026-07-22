@@ -39,7 +39,7 @@ export default function Trust() {
           <Reveal className="lg:col-span-7">
             <figure className="relative h-full min-h-[480px] overflow-hidden bg-sand-2 sm:min-h-[580px] lg:min-h-[680px]">
               <Image
-                src="/intro-team.jpg"
+                src="/gallery/DSC_9017.jpg"
                 alt={t.trust.photoAlt}
                 fill
                 className="object-cover object-[60%_center]"
@@ -55,7 +55,7 @@ export default function Trust() {
                   </span>
                 </div>
                 <span className="hidden max-w-[190px] border-l border-ivory/30 pl-5 font-body text-xs leading-relaxed text-ivory/70 sm:block">
-                  Time to Surf · Tallinn · 2013—2026
+                  Time to Surf · Tallinn
                 </span>
               </figcaption>
             </figure>

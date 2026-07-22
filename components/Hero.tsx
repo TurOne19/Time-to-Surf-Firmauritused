@@ -10,7 +10,7 @@ export default function Hero() {
     <section id="top" className="relative min-h-[100svh] flex items-end overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center scale-105"
-        style={{ backgroundImage: "url('/hero.jpg')" }}
+        style={{ backgroundImage: "url('/gallery/IMG_8818.JPG')" }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/20" />
       <div className="absolute inset-0 bg-gradient-to-b from-ink/50 via-transparent to-transparent" />
