@@ -57,7 +57,7 @@ export default function Trust() {
                   </span>
                 </div>
                 <span className="hidden max-w-[190px] border-l border-ivory/30 pl-5 font-body text-xs leading-relaxed text-ivory/70 sm:block">
-                  Time to Surf · Tallinn
+                  {t.trust.proofSignature}
                 </span>
               </figcaption>
             </figure>

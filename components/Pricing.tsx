@@ -103,7 +103,7 @@ export default function Pricing() {
                   </p>
                   <p className="mt-1 font-body text-xs text-ink/50">{t.pricing.durationNote}</p>
                 </div>
-                <span className="font-display text-3xl text-ink/70">€350</span>
+                <span className="font-display text-3xl text-ink/70">{t.pricing.priceAmount}</span>
               </div>
             </div>
           </Reveal>

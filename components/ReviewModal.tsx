@@ -2,6 +2,7 @@
 
 import { useEffect, useState, FormEvent } from "react";
 import { useLanguage } from "@/lib/language-context";
+import { submitReview } from "@/lib/supabase";
 
 interface Props {
   onClose: () => void;
@@ -17,6 +18,8 @@ export default function ReviewModal({ onClose }: Props) {
   const [rating, setRating] = useState(5);
   const [hoverRating, setHoverRating] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -30,9 +33,28 @@ export default function ReviewModal({ onClose }: Props) {
     };
   }, [onClose]);
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setSubmitError("");
+    const data = new FormData(event.currentTarget);
+    try {
+      await submitReview({
+        name: String(data.get("name") || ""),
+        contact: String(data.get("contact") || ""),
+        company: String(data.get("company") || ""),
+        role: String(data.get("role") || "") || null,
+        event_type: String(data.get("eventType") || ""),
+        event_size: Number(data.get("eventSize")),
+        event_date: String(data.get("eventDate") || ""),
+        rating,
+        text: String(data.get("text") || ""),
+        consent: data.get("consent") === "on",
+      });
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Не удалось отправить отзыв. Попробуйте ещё раз позже.");
+    } finally { setSubmitting(false); }
   };
 
   return (
@@ -60,7 +82,7 @@ export default function ReviewModal({ onClose }: Props) {
         {!submitted ? (
           <>
             <p className="mb-4 font-label text-[10px] font-semibold uppercase tracking-[0.18em] text-gold-2">
-              Time to Surf · Feedback
+              {t.reviews.feedbackLabel}
             </p>
             <h3 className="mb-3 max-w-lg font-display text-3xl leading-tight text-ink md:text-4xl">
               {t.reviews.modalTitle}
@@ -73,29 +95,29 @@ export default function ReviewModal({ onClose }: Props) {
               <div className="grid gap-5 sm:grid-cols-2">
                 <label className="flex flex-col gap-2">
                   <span className={labelClass}>{t.reviews.formName}</span>
-                  <input required type="text" placeholder={t.reviews.formNamePlaceholder} className={fieldClass} />
+                  <input name="name" required type="text" placeholder={t.reviews.formNamePlaceholder} className={fieldClass} />
                 </label>
                 <label className="flex flex-col gap-2">
                   <span className={labelClass}>{t.reviews.formContact}</span>
-                  <input required type="text" placeholder={t.reviews.formContactPlaceholder} className={fieldClass} />
+                  <input name="contact" required type="text" placeholder={t.reviews.formContactPlaceholder} className={fieldClass} />
                 </label>
               </div>
 
               <div className="grid gap-5 sm:grid-cols-2">
                 <label className="flex flex-col gap-2">
                   <span className={labelClass}>{t.reviews.formCompany}</span>
-                  <input required type="text" placeholder={t.reviews.formCompanyPlaceholder} className={fieldClass} />
+                  <input name="company" required type="text" placeholder={t.reviews.formCompanyPlaceholder} className={fieldClass} />
                 </label>
                 <label className="flex flex-col gap-2">
                   <span className={labelClass}>{t.reviews.formRole}</span>
-                  <input type="text" placeholder={t.reviews.formRolePlaceholder} className={fieldClass} />
+                  <input name="role" type="text" placeholder={t.reviews.formRolePlaceholder} className={fieldClass} />
                 </label>
               </div>
 
               <div className="grid gap-5 sm:grid-cols-3">
                 <label className="flex flex-col gap-2 sm:col-span-1">
                   <span className={labelClass}>{t.reviews.formEventType}</span>
-                  <select required defaultValue="" className={fieldClass}>
+                  <select name="eventType" required defaultValue="" className={fieldClass}>
                     <option value="" disabled>-</option>
                     {t.reviews.formEventTypes.map((option) => (
                       <option key={option} value={option}>{option}</option>
@@ -104,11 +126,11 @@ export default function ReviewModal({ onClose }: Props) {
                 </label>
                 <label className="flex flex-col gap-2">
                   <span className={labelClass}>{t.reviews.formEventSize}</span>
-                  <input required type="number" min="1" inputMode="numeric" className={fieldClass} />
+                  <input name="eventSize" required type="number" min="1" inputMode="numeric" className={fieldClass} />
                 </label>
                 <label className="flex flex-col gap-2">
                   <span className={labelClass}>{t.reviews.formEventDate}</span>
-                  <input required type="date" className={fieldClass} />
+                  <input name="eventDate" required type="date" className={fieldClass} />
                 </label>
               </div>
 
@@ -142,20 +164,22 @@ export default function ReviewModal({ onClose }: Props) {
 
               <label className="flex flex-col gap-2">
                 <span className={labelClass}>{t.reviews.formText}</span>
-                <textarea required rows={5} placeholder={t.reviews.formTextPlaceholder} className={`${fieldClass} resize-none`} />
+                <textarea name="text" required minLength={10} rows={5} placeholder={t.reviews.formTextPlaceholder} className={`${fieldClass} resize-none`} />
               </label>
 
               <label className="flex cursor-pointer items-start gap-3 border-t border-ink/15 pt-5">
-                <input required type="checkbox" className="mt-1 h-4 w-4 accent-[#C4924A]" />
+                <input name="consent" required type="checkbox" className="mt-1 h-4 w-4 accent-[#C4924A]" />
                 <span className="font-body text-xs leading-relaxed text-ink/60">{t.reviews.formConsent}</span>
               </label>
 
               <div className="flex flex-wrap items-center gap-4 pt-1">
+                {submitError && <p className="w-full text-sm font-bold text-red-600">{submitError}</p>}
                 <button
                   type="submit"
+                  disabled={submitting}
                   className="bg-ink px-7 py-3.5 font-label text-[10px] font-semibold uppercase tracking-[0.15em] text-ivory transition-colors hover:bg-gold hover:text-ink"
                 >
-                  {t.reviews.formSubmit}
+                  {submitting ? "..." : t.reviews.formSubmit}
                 </button>
                 <button
                   type="button"

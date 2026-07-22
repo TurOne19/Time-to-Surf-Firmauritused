@@ -1,14 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLanguage } from "@/lib/language-context";
 import Reveal from "./Reveal";
 import ReviewModal from "./ReviewModal";
+import { loadApprovedReviews, ReviewRecord } from "@/lib/supabase";
 
 export default function FaqReviews() {
   const { t } = useLanguage();
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [modalOpen, setModalOpen] = useState(false);
+  const [approvedReviews, setApprovedReviews] = useState<ReviewRecord[]>([]);
+
+  useEffect(() => {
+    loadApprovedReviews().then(setApprovedReviews).catch(() => setApprovedReviews([]));
+  }, []);
 
   return (
     <section id="faq" className="relative overflow-hidden bg-sand pb-32 pt-28 sm:pt-36 md:pb-40 lg:pt-44">
@@ -80,11 +86,23 @@ export default function FaqReviews() {
                   {t.reviews.eyebrow}
                 </p>
                 <h2 className="max-w-md text-balance font-display text-3xl leading-[1.08] tracking-[-0.02em] text-ivory sm:text-4xl">
-                  {t.reviews.emptyTitle}
+                  {approvedReviews.length ? t.reviews.title : t.reviews.emptyTitle}
                 </h2>
-                <p className="mt-6 max-w-md font-body text-sm leading-relaxed text-ivory/70 md:text-base">
-                  {t.reviews.emptyText}
-                </p>
+                {approvedReviews.length ? (
+                  <div className="mt-7 grid max-h-[430px] gap-4 overflow-y-auto pr-1">
+                    {approvedReviews.map((review) => (
+                      <article key={review.id} className="border border-ivory/15 bg-ivory/[0.04] p-5">
+                        <div className="flex items-center justify-between gap-4">
+                          <div><strong className="font-display text-lg text-ivory">{review.name}</strong><p className="text-xs text-ivory/45">{review.company}</p></div>
+                          <span className="text-sm tracking-wider text-gold">{"★".repeat(review.rating)}</span>
+                        </div>
+                        <p className="mt-4 font-body text-sm leading-relaxed text-ivory/70">{review.text}</p>
+                      </article>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="mt-6 max-w-md font-body text-sm leading-relaxed text-ivory/70 md:text-base">{t.reviews.emptyText}</p>
+                )}
 
                 <div className="my-8 border-y border-ivory/15 py-6">
                   <div className="flex items-start gap-4">

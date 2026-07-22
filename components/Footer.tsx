@@ -20,7 +20,7 @@ export default function Footer() {
           <div>
             <p className="font-display text-lg text-ivory mb-2 flex items-center gap-2">
               <span className="text-gold" aria-hidden="true">≈</span>
-              Time <span className="text-gold">to</span> Surf
+              {t.footer.brandName}
             </p>
             <p className="font-body text-ivory/50 text-sm mb-5 max-w-xs">{t.footer.tagline}</p>
             <div className="flex flex-wrap gap-2">
@@ -30,7 +30,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="font-label text-[11px] tracking-wideish uppercase border border-ivory/20 text-ivory/70 rounded-full px-4 py-2 hover:border-gold hover:text-gold transition-colors"
               >
-                Facebook
+                {t.footer.socialLabels[0]}
               </a>
               <a
                 href={links.instagram}
@@ -38,7 +38,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="font-label text-[11px] tracking-wideish uppercase border border-ivory/20 text-ivory/70 rounded-full px-4 py-2 hover:border-gold hover:text-gold transition-colors"
               >
-                Instagram
+                {t.footer.socialLabels[1]}
               </a>
               <a
                 href={links.telegram}
@@ -46,7 +46,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="font-label text-[11px] tracking-wideish uppercase border border-ivory/20 text-ivory/70 rounded-full px-4 py-2 hover:border-gold hover:text-gold transition-colors"
               >
-                Telegram
+                {t.footer.socialLabels[2]}
               </a>
             </div>
           </div>
@@ -88,7 +88,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="hover:text-gold transition-colors"
                 >
-                  Telegram
+                  {t.footer.socialLabels[2]}
                 </a>
               </li>
             </ul>
@@ -105,7 +105,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="w-fit rounded-full border border-ivory/20 px-4 py-2 text-ivory/55 transition-colors hover:border-gold hover:text-gold"
           >
-            Webpage by northpixel
+            {t.footer.creditLabel}
           </a>
         </div>
       </div>

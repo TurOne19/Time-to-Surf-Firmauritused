@@ -114,7 +114,7 @@ export default function LocationStrip() {
             </a>
 
             <p className="mt-auto hidden pt-8 font-label text-[9px] uppercase tracking-[0.18em] text-ivory/30 lg:block">
-              59.4363311° N · 24.6806022° E
+              {t.location.coordinates}
             </p>
           </div>
         </div>

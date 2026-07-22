@@ -30,7 +30,7 @@ export default function Nav() {
     >
       <div className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-16 md:h-20">
         <a href="#top" className="font-display text-lg md:text-xl tracking-wide text-ivory">
-          Time <span className="text-gold">to</span> Surf
+          {t.footer.brandName}
         </a>
 
         <nav className="hidden lg:flex items-center gap-8 font-label text-xs tracking-widest2 uppercase text-ivory/85">

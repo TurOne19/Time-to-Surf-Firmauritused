@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { loadSiteState } from "./supabase";
 
 export const SITE_CONFIG_KEY = "time-to-surf-site-config-v1";
 export const CONTENT_CONFIG_KEY = "time-to-surf-content-config-v1";
@@ -90,7 +91,13 @@ export function SiteConfigProvider({ children }: { children: React.ReactNode }) 
   const [config, setConfig] = useState(defaultSiteConfig);
 
   useEffect(() => {
-    const refresh = () => setConfig(loadConfig());
+    const refresh = async () => {
+      setConfig(loadConfig());
+      try {
+        const remote = await loadSiteState();
+        if (remote?.config) setConfig(remote.config);
+      } catch { /* SQL may not have been installed yet; local defaults remain */ }
+    };
     refresh();
     window.addEventListener("storage", refresh);
     window.addEventListener("tts-admin-updated", refresh);

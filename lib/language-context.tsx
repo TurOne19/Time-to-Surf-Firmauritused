@@ -11,6 +11,7 @@ import React, {
 } from "react";
 import { Locale, Dictionary, dictionaries, defaultLocale } from "./content-v2";
 import { CONTENT_CONFIG_KEY } from "./site-config";
+import { loadSiteState } from "./supabase";
 
 const LOCALE_STORAGE_KEY = "time-to-surf-locale";
 const SCROLL_STORAGE_KEY = "time-to-surf-scroll";
@@ -35,13 +36,17 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const initialHash = useRef<string | null>(null);
 
   useEffect(() => {
-    const refreshContent = () => {
+    const refreshContent = async () => {
       try {
         const saved = window.localStorage.getItem(CONTENT_CONFIG_KEY);
         setContent(saved ? JSON.parse(saved) : dictionaries);
       } catch {
         setContent(dictionaries);
       }
+      try {
+        const remote = await loadSiteState();
+        if (remote?.content) setContent(remote.content);
+      } catch { /* SQL may not have been installed yet; local defaults remain */ }
     };
     refreshContent();
     window.addEventListener("storage", refreshContent);
