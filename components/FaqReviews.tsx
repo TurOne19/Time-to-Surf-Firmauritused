@@ -7,7 +7,7 @@ import ReviewModal from "./ReviewModal";
 import { loadApprovedReviews, ReviewRecord } from "@/lib/supabase";
 
 export default function FaqReviews() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [approvedReviews, setApprovedReviews] = useState<ReviewRecord[]>([]);
@@ -93,10 +93,31 @@ export default function FaqReviews() {
                     {approvedReviews.map((review) => (
                       <article key={review.id} className="border border-ivory/15 bg-ivory/[0.04] p-5">
                         <div className="flex items-center justify-between gap-4">
-                          <div><strong className="font-display text-lg text-ivory">{review.name}</strong><p className="text-xs text-ivory/45">{review.company}</p></div>
+                          <div>
+                            <strong className="font-display text-lg text-ivory">{review.name}</strong>
+                            <p className="text-xs text-ivory/45">
+                              {review.company}{review.role ? ` · ${review.role}` : ""}
+                            </p>
+                          </div>
                           <span className="text-sm tracking-wider text-gold">{"★".repeat(review.rating)}</span>
                         </div>
                         <p className="mt-4 font-body text-sm leading-relaxed text-ivory/70">{review.text}</p>
+                        <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 border-t border-ivory/10 pt-4 font-body text-xs text-ivory/55">
+                          <div>
+                            <dt className="text-ivory/35">{t.reviews.formEventType}</dt>
+                            <dd className="mt-0.5 text-ivory/70">{review.event_type}</dd>
+                          </div>
+                          <div>
+                            <dt className="text-ivory/35">{t.reviews.formEventSize}</dt>
+                            <dd className="mt-0.5 text-ivory/70">{review.event_size}</dd>
+                          </div>
+                          <div className="col-span-2">
+                            <dt className="text-ivory/35">{t.reviews.formEventDate}</dt>
+                            <dd className="mt-0.5 text-ivory/70">
+                              {new Intl.DateTimeFormat(locale === "et" ? "et-EE" : locale === "ru" ? "ru-RU" : "en-GB", { timeZone: "UTC" }).format(new Date(`${review.event_date}T00:00:00Z`))}
+                            </dd>
+                          </div>
+                        </dl>
                       </article>
                     ))}
                   </div>
