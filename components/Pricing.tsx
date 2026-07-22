@@ -1,11 +1,12 @@
 "use client";
 
 import { useLanguage } from "@/lib/language-context";
-import { TELEGRAM_URL } from "@/lib/constants";
+import { useSiteConfig } from "@/lib/site-config";
 import Reveal from "./Reveal";
 
 export default function Pricing() {
   const { t } = useLanguage();
+  const { links } = useSiteConfig();
 
   return (
     <section id="pricing" className="relative overflow-hidden bg-ink">
@@ -83,7 +84,7 @@ export default function Pricing() {
               </ul>
 
               <a
-                href={TELEGRAM_URL}
+                href={links.telegram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-9 flex min-h-[52px] w-full items-center justify-between gap-4 bg-ink px-6 py-4 font-label text-[10px] font-semibold uppercase tracking-[0.15em] text-ivory transition-colors hover:bg-gold hover:text-ink"

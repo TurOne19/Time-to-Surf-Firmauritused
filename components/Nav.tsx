@@ -3,12 +3,13 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/lib/language-context";
 import { locales } from "@/lib/content-v2";
-import { TELEGRAM_URL } from "@/lib/constants";
+import { useSiteConfig } from "@/lib/site-config";
 
 const anchors = ["program", "gallery", "pricing", "why", "faq", "contact"];
 
 export default function Nav() {
   const { t, locale, setLocale } = useLanguage();
+  const { links } = useSiteConfig();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -59,7 +60,7 @@ export default function Nav() {
           </div>
 
           <a
-            href={TELEGRAM_URL}
+            href={links.telegram}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden md:inline-flex items-center gap-2 border border-gold/70 text-gold px-4 py-2 text-xs font-label tracking-wideish uppercase hover:bg-gold hover:text-ink transition-colors"

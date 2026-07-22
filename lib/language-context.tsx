@@ -10,6 +10,7 @@ import React, {
   useState,
 } from "react";
 import { Locale, Dictionary, dictionaries, defaultLocale } from "./content-v2";
+import { CONTENT_CONFIG_KEY } from "./site-config";
 
 const LOCALE_STORAGE_KEY = "time-to-surf-locale";
 const SCROLL_STORAGE_KEY = "time-to-surf-scroll";
@@ -28,9 +29,28 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocale] = useState<Locale>(defaultLocale);
+  const [content, setContent] = useState(dictionaries);
   const [preferencesLoaded, setPreferencesLoaded] = useState(false);
   const initialScrollY = useRef<number | null>(null);
   const initialHash = useRef<string | null>(null);
+
+  useEffect(() => {
+    const refreshContent = () => {
+      try {
+        const saved = window.localStorage.getItem(CONTENT_CONFIG_KEY);
+        setContent(saved ? JSON.parse(saved) : dictionaries);
+      } catch {
+        setContent(dictionaries);
+      }
+    };
+    refreshContent();
+    window.addEventListener("storage", refreshContent);
+    window.addEventListener("tts-admin-updated", refreshContent);
+    return () => {
+      window.removeEventListener("storage", refreshContent);
+      window.removeEventListener("tts-admin-updated", refreshContent);
+    };
+  }, []);
 
   useEffect(() => {
     const savedLocale = window.localStorage.getItem(LOCALE_STORAGE_KEY);
@@ -121,9 +141,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     () => ({
       locale,
       setLocale: changeLocale,
-      t: dictionaries[locale],
+      t: content[locale],
     }),
-    [changeLocale, locale]
+    [changeLocale, content, locale]
   );
 
   return (

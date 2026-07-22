@@ -3,9 +3,11 @@
 import Image from "next/image";
 import { useLanguage } from "@/lib/language-context";
 import Reveal from "./Reveal";
+import { useSiteConfig } from "@/lib/site-config";
 
 export default function Trust() {
   const { t } = useLanguage();
+  const { media } = useSiteConfig();
 
   return (
     <section id="why" className="relative overflow-hidden bg-sand">
@@ -39,7 +41,7 @@ export default function Trust() {
           <Reveal className="lg:col-span-7">
             <figure className="relative h-full min-h-[480px] overflow-hidden bg-sand-2 sm:min-h-[580px] lg:min-h-[680px]">
               <Image
-                src="/gallery/DSC_9017.jpg"
+                src={media.trust}
                 alt={t.trust.photoAlt}
                 fill
                 className="object-cover object-[60%_center]"

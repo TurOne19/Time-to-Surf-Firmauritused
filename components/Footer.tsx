@@ -2,19 +2,13 @@
 
 import { useLanguage } from "@/lib/language-context";
 import LocationStrip from "./LocationStrip";
-import {
-  TELEGRAM_URL,
-  PHONE_TEL,
-  PHONE_DISPLAY,
-  EMAIL,
-  INSTAGRAM_URL,
-  FACEBOOK_URL,
-} from "@/lib/constants";
+import { useSiteConfig } from "@/lib/site-config";
 
 const anchors = ["program", "gallery", "pricing", "why", "faq", "contact"];
 
 export default function Footer() {
   const { t } = useLanguage();
+  const { links } = useSiteConfig();
   const year = new Date().getFullYear();
 
   return (
@@ -31,7 +25,7 @@ export default function Footer() {
             <p className="font-body text-ivory/50 text-sm mb-5 max-w-xs">{t.footer.tagline}</p>
             <div className="flex flex-wrap gap-2">
               <a
-                href={FACEBOOK_URL}
+                href={links.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-label text-[11px] tracking-wideish uppercase border border-ivory/20 text-ivory/70 rounded-full px-4 py-2 hover:border-gold hover:text-gold transition-colors"
@@ -39,7 +33,7 @@ export default function Footer() {
                 Facebook
               </a>
               <a
-                href={INSTAGRAM_URL}
+                href={links.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-label text-[11px] tracking-wideish uppercase border border-ivory/20 text-ivory/70 rounded-full px-4 py-2 hover:border-gold hover:text-gold transition-colors"
@@ -47,7 +41,7 @@ export default function Footer() {
                 Instagram
               </a>
               <a
-                href={TELEGRAM_URL}
+                href={links.telegram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-label text-[11px] tracking-wideish uppercase border border-ivory/20 text-ivory/70 rounded-full px-4 py-2 hover:border-gold hover:text-gold transition-colors"
@@ -78,18 +72,18 @@ export default function Footer() {
             </p>
             <ul className="flex flex-col gap-2.5 font-body text-sm text-ivory/70">
               <li>
-                <a href={`tel:${PHONE_TEL}`} className="hover:text-gold transition-colors">
-                  {PHONE_DISPLAY}
+                <a href={`tel:${links.phoneTel}`} className="hover:text-gold transition-colors">
+                  {links.phoneDisplay}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${EMAIL}`} className="hover:text-gold transition-colors">
-                  {EMAIL}
+                <a href={`mailto:${links.email}`} className="hover:text-gold transition-colors">
+                  {links.email}
                 </a>
               </li>
               <li>
                 <a
-                  href={TELEGRAM_URL}
+                  href={links.telegram}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-gold transition-colors"
@@ -106,7 +100,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto flex flex-col gap-3 px-5 py-5 font-label text-[11px] uppercase tracking-wideish text-ivory/35 sm:flex-row sm:items-center sm:justify-between md:px-8">
           <span>© {year} TIME TO SURF - {t.footer.rights}</span>
           <a
-            href="https://northpixel.ee"
+            href={links.northpixel}
             target="_blank"
             rel="noopener noreferrer"
             className="w-fit rounded-full border border-ivory/20 px-4 py-2 text-ivory/55 transition-colors hover:border-gold hover:text-gold"

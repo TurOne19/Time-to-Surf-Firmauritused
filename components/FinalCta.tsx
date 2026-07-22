@@ -2,15 +2,16 @@
 
 import Image from "next/image";
 import { useLanguage } from "@/lib/language-context";
-import { TELEGRAM_URL } from "@/lib/constants";
+import { useSiteConfig } from "@/lib/site-config";
 
 export default function FinalCta() {
   const { t } = useLanguage();
+  const { links, media } = useSiteConfig();
 
   return (
     <section id="contact" className="relative flex min-h-[88svh] items-end overflow-hidden bg-ink">
       <Image
-        src="/gallery/DSC_8897.jpg"
+        src={media.finalCta}
         alt=""
         fill
         className="object-cover object-[62%_center]"
@@ -35,7 +36,7 @@ export default function FinalCta() {
           </p>
 
           <a
-            href={TELEGRAM_URL}
+            href={links.telegram}
             target="_blank"
             rel="noopener noreferrer"
             className="group mt-10 inline-flex min-h-[56px] items-center gap-5 bg-gold px-7 py-4 font-label text-[11px] font-semibold uppercase tracking-[0.15em] text-ink transition-colors hover:bg-ivory md:mt-12"

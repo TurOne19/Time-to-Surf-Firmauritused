@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/lib/language-context";
-import { MAPS_EMBED_URL, MAPS_LINK_URL } from "@/lib/constants";
+import { useSiteConfig } from "@/lib/site-config";
 
 function LocationIcon({ type }: { type: "pin" | "bus" | "parking" }) {
   if (type === "pin") {
@@ -34,6 +34,7 @@ function LocationIcon({ type }: { type: "pin" | "bus" | "parking" }) {
 
 export default function LocationStrip() {
   const { t } = useLanguage();
+  const { links } = useSiteConfig();
   const details = [
     { type: "pin" as const, label: t.location.addressLabel, text: t.location.addressText },
     { type: "bus" as const, label: t.location.howToLabel, text: t.location.howToText },
@@ -71,7 +72,7 @@ export default function LocationStrip() {
         <div className="grid gap-8 lg:grid-cols-12 lg:items-stretch lg:gap-10">
           <div className="relative min-h-[420px] overflow-hidden border border-ivory/15 bg-ink-2 lg:col-span-7 lg:min-h-[560px]">
             <iframe
-              src={MAPS_EMBED_URL}
+              src={links.mapsEmbed}
               title="Time to Surf Stroomi - interactive map"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -101,7 +102,7 @@ export default function LocationStrip() {
             </div>
 
             <a
-              href={MAPS_LINK_URL}
+              href={links.mapsLink}
               target="_blank"
               rel="noopener noreferrer"
               className="group mt-8 flex min-h-[56px] w-full items-center justify-between gap-5 bg-gold px-6 py-4 font-label text-[10px] font-semibold uppercase tracking-[0.16em] text-ink transition-colors hover:bg-ivory"

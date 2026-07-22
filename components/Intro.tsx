@@ -3,9 +3,11 @@
 import Image from "next/image";
 import { useLanguage } from "@/lib/language-context";
 import Reveal from "./Reveal";
+import { useSiteConfig } from "@/lib/site-config";
 
 export default function Intro() {
   const { t } = useLanguage();
+  const { media } = useSiteConfig();
 
   return (
     <section className="relative overflow-hidden bg-sand">
@@ -65,7 +67,7 @@ export default function Intro() {
             <figure className="relative w-[92%] sm:w-[82%] lg:w-[78%]">
               <div className="relative aspect-[4/3] overflow-hidden bg-sand-2">
                 <Image
-                  src="/gallery/IMG_9183.JPG"
+                  src={media.introPrimary}
                   alt={t.intro.photoAlts[0]}
                   fill
                   priority
@@ -83,7 +85,7 @@ export default function Intro() {
             <figure className="relative z-10 -mt-8 ml-auto w-[58%] sm:-mt-20 sm:w-[48%] lg:absolute lg:right-0 lg:top-[245px] lg:mt-0 lg:w-[43%]">
               <div className="relative aspect-[3/4] overflow-hidden border-[8px] border-sand bg-sand-2 sm:border-[12px]">
                 <Image
-                  src="/gallery/IMG_8785.JPG"
+                  src={media.introSecondary}
                   alt={t.intro.photoAlts[1]}
                   fill
                   className="object-cover object-center"

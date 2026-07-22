@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Fraunces, Manrope, Space_Grotesk, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/language-context";
+import { SiteConfigProvider } from "@/lib/site-config";
 
 // Fraunces has no Cyrillic glyphs at all (Google only ships latin,
 // latin-ext, vietnamese for it), so it's used for ET/EN headlines only.
@@ -58,7 +59,9 @@ export default function RootLayout({
       <body
         className={`${fraunces.variable} ${playfair.variable} ${manrope.variable} ${grotesk.variable} font-body antialiased`}
       >
-        <LanguageProvider>{children}</LanguageProvider>
+        <SiteConfigProvider>
+          <LanguageProvider>{children}</LanguageProvider>
+        </SiteConfigProvider>
       </body>
     </html>
   );

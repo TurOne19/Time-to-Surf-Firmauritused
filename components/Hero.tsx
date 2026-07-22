@@ -1,16 +1,17 @@
 "use client";
 
 import { useLanguage } from "@/lib/language-context";
-import { TELEGRAM_URL, PHONE_TEL, PHONE_DISPLAY } from "@/lib/constants";
+import { useSiteConfig } from "@/lib/site-config";
 
 export default function Hero() {
   const { t } = useLanguage();
+  const { links, media } = useSiteConfig();
 
   return (
     <section id="top" className="relative min-h-[100svh] flex items-end overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center scale-105"
-        style={{ backgroundImage: "url('/gallery/IMG_8818.JPG')" }}
+        style={{ backgroundImage: `url('${media.hero}')` }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/20" />
       <div className="absolute inset-0 bg-gradient-to-b from-ink/50 via-transparent to-transparent" />
@@ -41,7 +42,7 @@ export default function Hero() {
           style={{ animationDelay: "0.3s" }}
         >
           <a
-            href={TELEGRAM_URL}
+            href={links.telegram}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-gold text-ink min-h-12 px-8 py-3.5 font-label text-xs tracking-wideish uppercase font-semibold hover:bg-ivory transition-colors"
@@ -55,11 +56,11 @@ export default function Hero() {
             {t.hero.ctaSecondary}
           </a>
           <a
-            href={`tel:${PHONE_TEL}`}
+            href={`tel:${links.phoneTel}`}
             className="inline-flex items-center gap-2 text-ivory/80 font-label text-xs tracking-wideish uppercase"
           >
             <span className="text-gold" aria-hidden="true">⟡</span>
-            {t.hero.phoneLabel} · {PHONE_DISPLAY}
+            {t.hero.phoneLabel} · {links.phoneDisplay}
           </a>
         </div>
 

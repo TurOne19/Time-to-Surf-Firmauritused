@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { useLanguage } from "@/lib/language-context";
-import { GalleryItem, getGalleryItems } from "@/lib/gallery";
+import { GalleryItem } from "@/lib/gallery";
+import { useSiteConfig } from "@/lib/site-config";
 import GalleryTile from "./GalleryTile";
 import Lightbox from "./Lightbox";
 import Reveal from "./Reveal";
@@ -10,14 +11,6 @@ import Reveal from "./Reveal";
 type Filter = "all" | "photo" | "video";
 
 const INITIAL_COUNT = 16;
-
-const curatedItems: GalleryItem[] = [
-  { id: "story-atmosphere", index: 1, type: "photo", src: "/gallery/DSC_8879.jpg" },
-  { id: "story-people", index: 2, type: "photo", src: "/gallery/DSC_8978.jpg" },
-  { id: "story-details", index: 3, type: "photo", src: "/gallery/IMG_8781.JPG" },
-  { id: "story-equipment", index: 4, type: "photo", src: "/gallery/DSC_9001.jpg" },
-  { id: "story-finale", index: 5, type: "photo", src: "/gallery/DSC_8989.jpg" },
-];
 
 const curatedTiles = [
   "md:col-start-1 md:col-end-8 md:row-start-1 md:row-end-8",
@@ -37,7 +30,15 @@ const curatedPositions = [
 
 export default function Gallery() {
   const { t } = useLanguage();
-  const allItems = useMemo(() => getGalleryItems(), []);
+  const { media } = useSiteConfig();
+  const curatedItems: GalleryItem[] = useMemo(
+    () => media.curated.map((src, index) => ({ id: `story-${index + 1}`, index: index + 1, type: "photo", src })),
+    [media.curated]
+  );
+  const allItems: GalleryItem[] = useMemo(
+    () => media.gallery.map((item, index) => ({ ...item, index: index + 1 })),
+    [media.gallery]
+  );
   const [filter, setFilter] = useState<Filter>("all");
   const [archiveOpen, setArchiveOpen] = useState(false);
   const [showAll, setShowAll] = useState(false);
