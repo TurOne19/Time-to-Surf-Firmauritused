@@ -104,7 +104,7 @@ export default function Footer() {
 
       <div className="border-t border-ivory/10">
         <div className="max-w-7xl mx-auto flex flex-col gap-3 px-5 py-5 font-label text-[11px] uppercase tracking-wideish text-ivory/35 sm:flex-row sm:items-center sm:justify-between md:px-8">
-          <span>© {year} TIME TO SURF — {t.footer.rights}</span>
+          <span>© {year} TIME TO SURF - {t.footer.rights}</span>
           <a
             href="https://northpixel.ee"
             target="_blank"

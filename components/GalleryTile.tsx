@@ -28,7 +28,7 @@ export default function GalleryTile({ item, photoLabel, videoLabel, onOpen }: Pr
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={imgSrc}
-          alt={`${label} ${item.index} — Time to Surf`}
+          alt={`${label} ${item.index} - Time to Surf`}
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
           loading="lazy"
           onError={() => setErrored(true)}

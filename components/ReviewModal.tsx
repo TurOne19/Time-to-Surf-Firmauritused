@@ -96,7 +96,7 @@ export default function ReviewModal({ onClose }: Props) {
                 <label className="flex flex-col gap-2 sm:col-span-1">
                   <span className={labelClass}>{t.reviews.formEventType}</span>
                   <select required defaultValue="" className={fieldClass}>
-                    <option value="" disabled>—</option>
+                    <option value="" disabled>-</option>
                     {t.reviews.formEventTypes.map((option) => (
                       <option key={option} value={option}>{option}</option>
                     ))}

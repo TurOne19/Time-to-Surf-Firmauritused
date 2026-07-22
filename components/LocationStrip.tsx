@@ -72,7 +72,7 @@ export default function LocationStrip() {
           <div className="relative min-h-[420px] overflow-hidden border border-ivory/15 bg-ink-2 lg:col-span-7 lg:min-h-[560px]">
             <iframe
               src={MAPS_EMBED_URL}
-              title="Time to Surf Stroomi — interactive map"
+              title="Time to Surf Stroomi - interactive map"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               allowFullScreen

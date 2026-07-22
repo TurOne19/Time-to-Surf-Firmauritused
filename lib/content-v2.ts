@@ -35,7 +35,7 @@ const reviewForm = {
   formConsent: "", formRating: "", formText: "", formTextPlaceholder: "",
 } satisfies Partial<Dictionary["reviews"]>;
 
-export const dictionaries: Record<Locale, Dictionary> = {
+const rawDictionaries: Record<Locale, Dictionary> = {
   ru: {
     nav: { links: ["Программа", "Галерея", "Стоимость", "Почему мы", "Вопросы", "Контакты"], cta: "Получить предложение" },
     hero: {
@@ -156,3 +156,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
     footer: { tagline: "Water activities and corporate days by the sea in Tallinn since 2013.", linksTitle: "Links", contactTitle: "Contact", rights: "All rights reserved." },
   },
 };
+
+// Keep all public-facing punctuation consistent with the requested short hyphen.
+export const dictionaries: Record<Locale, Dictionary> = JSON.parse(
+  JSON.stringify(rawDictionaries).replaceAll("—", "-")
+);

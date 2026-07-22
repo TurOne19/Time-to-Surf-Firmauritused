@@ -88,7 +88,7 @@ export default function Lightbox({ items, startIndex, photoLabel, videoLabel, on
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={imgSrc}
-            alt={`${label} ${item.index} — Time to Surf`}
+            alt={`${label} ${item.index} - Time to Surf`}
             className="w-full h-full object-contain"
             onError={() => setErrored(true)}
           />
