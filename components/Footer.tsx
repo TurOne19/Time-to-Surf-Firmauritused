@@ -8,7 +8,7 @@ const anchors = ["program", "gallery", "pricing", "why", "faq", "contact"];
 
 export default function Footer() {
   const { t } = useLanguage();
-  const { links } = useSiteConfig();
+  const { links, seo } = useSiteConfig();
   const year = new Date().getFullYear();
 
   return (
@@ -18,10 +18,18 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-5 md:px-8 py-14 md:py-16">
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-10 md:gap-8">
           <div>
-            <p className="font-display text-lg text-ivory mb-2 flex items-center gap-2">
-              <span className="text-gold" aria-hidden="true">≈</span>
-              {t.footer.brandName}
-            </p>
+            <div className="mb-3 flex items-center gap-3">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white p-1 shadow-[0_0_0_1px_rgba(255,255,255,0.2)]">
+                <img
+                  src={seo.favicon}
+                  alt=""
+                  width="40"
+                  height="40"
+                  className="h-full w-full rounded-full object-cover"
+                />
+              </span>
+              <p className="font-display text-lg text-ivory">{t.footer.brandName}</p>
+            </div>
             <p className="font-body text-ivory/50 text-sm mb-5 max-w-xs">{t.footer.tagline}</p>
             <div className="flex flex-wrap gap-2">
               <a
