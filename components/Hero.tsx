@@ -17,7 +17,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-ink/50 via-transparent to-transparent" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_65%,rgba(12,38,48,0.08),rgba(12,38,48,0.6)_72%)]" />
 
-      <div className="relative z-10 mx-auto w-full max-w-[90rem] px-5 pb-16 pt-28 sm:px-8 sm:pb-20 sm:pt-32 md:pb-32 md:pt-48 lg:px-12 lg:pb-36">
+      <div className="relative z-10 mx-auto w-full max-w-[90rem] px-5 pb-16 pt-40 sm:px-8 sm:pb-20 sm:pt-40 md:pb-32 md:pt-48 lg:px-12 lg:pb-36">
         <p className="reveal mb-5 inline-flex items-center gap-3 rounded-full border border-ivory/25 bg-ink/25 px-4 py-2 font-label text-[10px] font-semibold uppercase tracking-[0.16em] text-ivory backdrop-blur-md shadow-[0_1px_0_rgba(255,255,255,0.08)_inset] sm:text-[11px] md:mb-7 md:text-xs md:tracking-[0.18em]">
           <span className="h-1.5 w-1.5 rounded-full bg-gold shadow-[0_0_0_4px_rgba(217,169,78,0.14)]" aria-hidden="true" />
           {t.hero.eyebrow}
