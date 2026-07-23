@@ -28,15 +28,15 @@ export default function Nav() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-16 md:h-20">
-        <a href="#top" className="flex items-center gap-2.5 font-display text-lg tracking-wide text-ivory md:text-xl">
+      <div className="flex h-16 w-full items-center gap-5 px-5 md:h-20 md:px-8 xl:gap-8 xl:px-10">
+        <a href="#top" className="flex shrink-0 items-center gap-2.5 font-display text-lg tracking-wide text-ivory md:text-xl">
           <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white p-1 shadow-[0_0_0_1px_rgba(255,255,255,0.25)] md:h-10 md:w-10">
             <img src={seo.favicon} alt="" width="40" height="40" className="h-full w-full rounded-full object-cover" />
           </span>
           <span className="hidden sm:inline">{t.footer.brandName}</span>
         </a>
 
-        <nav className="hidden lg:flex items-center gap-8 font-label text-xs tracking-widest2 uppercase text-ivory/85">
+        <nav className="hidden min-w-0 flex-1 items-center justify-center gap-5 font-label text-[11px] uppercase tracking-[0.15em] text-ivory/85 lg:flex xl:gap-7 xl:text-xs xl:tracking-widest2">
           {anchors.map((a, i) => (
             <a key={a} href={`#${a}`} className="hover:text-gold transition-colors">
               {t.nav.links[i]}
@@ -44,7 +44,7 @@ export default function Nav() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="ml-auto flex shrink-0 items-center gap-3 xl:gap-4">
           <div className="hidden md:flex items-center gap-1 font-label text-xs tracking-wideish">
             {locales.map((l) => (
               <button

@@ -56,10 +56,10 @@ export const defaultSiteConfig: SiteConfig = {
   },
   media: {
     hero: "/gallery/IMG_8818.JPG",
-    introPrimary: "/gallery/IMG_9183.JPG",
+    introPrimary: "/gallery/DSC_8897.jpg",
     introSecondary: "/gallery/IMG_8785.JPG",
     trust: "/gallery/DSC_9017.jpg",
-    finalCta: "/gallery/DSC_8897.jpg",
+    finalCta: "/gallery/IMG_9183.JPG",
     curated: [
       "/gallery/DSC_8879.jpg", "/gallery/DSC_8978.jpg", "/gallery/IMG_8781.JPG",
       "/gallery/DSC_9001.jpg", "/gallery/DSC_8989.jpg",
