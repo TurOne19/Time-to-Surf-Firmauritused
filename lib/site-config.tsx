@@ -50,8 +50,8 @@ export const defaultSiteConfig: SiteConfig = {
     northpixel: "https://northpixel.ee",
   },
   seo: {
-    title: "Suvine rannaüritus - Stroomi Rand, Time to surf",
-    description: "Ettevõttepäev mere ääres Stroomi rannas: turvaline veeprogramm, instruktorid ja varustus Time to Surfilt.",
+    title: "Suvine rannaüritus Tallinnas - Time to Surf Stroomi rand",
+    description: "Korralda ettevõtte suvepäev või firmaüritus Tallinnas Stroomi rannas. Time to Surf pakub turvalist veeprogrammi, instruktoreid, varustust ja rannajaama.",
     favicon: "/favicon.png",
   },
   media: {

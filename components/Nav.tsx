@@ -9,7 +9,7 @@ const anchors = ["program", "gallery", "pricing", "why", "faq", "contact"];
 
 export default function Nav() {
   const { t, locale, setLocale } = useLanguage();
-  const { links } = useSiteConfig();
+  const { links, seo } = useSiteConfig();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -29,8 +29,11 @@ export default function Nav() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-16 md:h-20">
-        <a href="#top" className="font-display text-lg md:text-xl tracking-wide text-ivory">
-          {t.footer.brandName}
+        <a href="#top" className="flex items-center gap-2.5 font-display text-lg tracking-wide text-ivory md:text-xl">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white p-1 shadow-[0_0_0_1px_rgba(255,255,255,0.25)] md:h-10 md:w-10">
+            <img src={seo.favicon} alt="" width="40" height="40" className="h-full w-full rounded-full object-cover" />
+          </span>
+          <span className="hidden sm:inline">{t.footer.brandName}</span>
         </a>
 
         <nav className="hidden lg:flex items-center gap-8 font-label text-xs tracking-widest2 uppercase text-ivory/85">
